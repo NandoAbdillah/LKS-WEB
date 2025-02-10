@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Crop</title>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      .input-form {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin: 10px auto;
+      }
+
+      #img-bg {
+        width: 100vw;
+        height: 100vh;
+        background-image: url("./image.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        display: grid;
+      }
+
+      .box {
+         border: 2px solid white;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="input-form">
+        <input type="number" name="row" id="row" placeholder="Input Row" />
+        <input
+          type="number"
+          name="column"
+          id="column"
+          placeholder="Input Column"
+        />
+        <button id="btn-submit" type="submit">Submit !</button>
+      </div>
+
+      <div id="img-bg" alt="">
+
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        let rowInput, colInput, row, col, bgHeight, bgWidth ,bg;
+
+        document.getElementById("btn-submit").addEventListener("click", () => { 
+
+
+          rowInput = document.getElementById("row").value;
+          colInput = document.getElementById("column").value;
+
+          if (rowInput !== "" && colInput !== "") {
+            row = parseInt(rowInput);
+            col = parseInt(colInput);
+            console.log(row + " " + col);
+
+            bg = document.getElementById("img-bg");
+            bg.innerHTML = '';
+            bgHeight = bg.offsetHeight;
+            bgWidth = bg.offsetWidth;
+          
+
+          for (let i = 0; i < row; i++) {
+            for (let j = 0; j < col; j++) {
+              let box = document.createElement("div");
+              box.classList.add('box');
+              bg.appendChild(box);
+            }
+          }
+
+          bg.style.gridTemplateColumns = `repeat(${col},1fr)`;
+          bg.style.gridTemplateRows = `${('auto'.repeat(row)).trim()}`;
+        }
+        });
+      });
+    </script>
+  </body>
+</html>

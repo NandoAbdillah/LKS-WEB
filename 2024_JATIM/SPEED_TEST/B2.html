@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5 Stars Rating Animation</title>
+    <link rel="stylesheet" href="./css/B2.css">
+</head>
+<body>
+    <div class="rating-container">
+        <div class="stars-fill">
+                <span data-value="0.5"></span>
+                <span data-value="1"></span>
+                <span data-value="1.5"></span>
+                <span data-value="2"></span>
+                <span data-value="2.5"></span>
+                <span data-value="3"></span>
+                <span data-value="3.5"></span>
+                <span data-value="4"></span>
+                <span data-value="4.5"></span>
+                <span data-value="5"></span>
+        </div>
+        <div class="stars-overlay"></div>
+    </div>
+
+
+    <script >
+        document.addEventListener('DOMContentLoaded', function () {
+            const ratingContainer = document.querySelector('.rating-container');
+            const starsFill = document.querySelector('.stars-fill');
+            const totalStars = 5; // Jumlah total bintang
+            const unitWidth = ratingContainer.clientWidth / (totalStars * 2); // Lebar per unit (0.5 poin)
+        
+            ratingContainer.addEventListener('mousemove', function (e) {
+                const mouseX = e.offsetX; // Posisi mouse relatif ke kontainer
+                const score = Math.ceil(mouseX / unitWidth) / 2; // Hitung skor dalam kelipatan 0.5
+                starsFill.style.width = `${(score / totalStars) * 100}%`; // Sesuaikan lebar pengisian
+            });
+        
+            ratingContainer.addEventListener('mouseleave', function () {
+                starsFill.style.width = '0'; // Reset saat mouse keluar
+            });
+        });
+        
+        
+    </script>
+</body>
+</html>

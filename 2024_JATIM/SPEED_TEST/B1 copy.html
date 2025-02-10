@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Particle Button</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+        }
+
+       button {
+         position:  relative;
+         border:  none;
+         padding: 15px;
+         font-size: 18px;
+         border-radius: 10px;
+         color:  white;
+         background-color: blueviolet;
+         cursor: pointer;
+       }
+
+       button::before, button::after {
+        content: "";
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        top: 40px;
+        left: 20px;
+        border-radius: 50%;
+        z-index: 0;
+
+        transform: translate(-50%, -50%) scale(0);
+
+        box-shadow:
+            -40px -10px 0 0 blueviolet,
+            -25px -20px 0 0 blueviolet,
+            -25px -40px 0 0 blueviolet,
+            -20px 5px 0 0 blueviolet,
+            50px 10px 0 0 blueviolet,
+            0px -50px 0 0 blueviolet,
+            30px -45px 0 0 blueviolet,
+            80px 0px 0 0 blueviolet,
+            90px -10px 0 0 blueviolet,
+            80px -35px 0 0 blueviolet
+        ;
+       }
+
+       button:active::before,
+       button:active::after {
+         animation: particle-burst 1s ease-out forwards ;
+       }
+
+       @keyframes particle-burst  {
+          0%{
+            transform: scale(1);
+          }
+          25% {
+            transform:  scale(1.2);
+          }
+         50% {
+          transform: scale(1.3);
+         }
+         75%{
+           transform:scale(0);
+         }
+       }
+
+
+    </style>
+  </head>
+  <body>
+    <button>Click Me !</button>
+  </body>
+</html>

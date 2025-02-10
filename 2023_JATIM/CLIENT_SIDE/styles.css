@@ -1,0 +1,236 @@
+:root {
+    --primary-color: bisque;
+    --secondary-color: black;
+
+    --font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+    font-family: Arial, Helvetica, sans-serif !important;
+    user-select: none;
+}
+
+
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#gameContainer {
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    /* Aktifkan Flexbox */
+    justify-content: center;
+    /* Center secara horizontal */
+    align-items: center;
+    /* Center secara vertikal */
+}
+
+.screen {
+    width: 1000px;
+    height: 600px;
+    border: 3px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px auto;
+    display: none;
+
+}
+
+.screen.active {
+    display: block;
+}
+
+
+
+#gameScreen {
+    height: 100%;
+    width: 80%;
+    background: url('./media/Sprites/General/Background.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: relative;
+    /* border: 3px solid black; */
+}
+
+#gameplay {
+    display: flex;
+}
+
+#ladeboard {
+    height: 100%;
+    width: 20%;
+    background-color: bisque;
+}
+
+
+.game-dashboard {
+    position: absolute;
+    border: 3px solid black;
+    top: 1%;
+    width: 75%;
+    height: 14%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+}
+
+.sun-amount-container {
+    width: 12%;
+    margin-left: 1%;
+    height: 100%;
+    border: 3px solid black;
+    position: relative;
+    display: flex;
+
+
+}
+
+#sun-amount {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    border: 2px solid black;
+    margin: 0;
+    font-family: var(--font-family);
+    font-weight: 900;
+}
+
+.plant-picker {
+    width: 40%;
+    height: 100%;
+    border: 3px solid black;
+    display: flex;
+    gap: 2px;
+
+    justify-content: space-around;
+}
+
+.plant-slot {
+    height: 80%;
+    width: 20%;
+    margin: auto;
+    border: 2px solid black;
+    cursor: pointer;
+    background: url('./media/Sprites/Seeds/IcePeaSeed.png');
+}
+.plant-slot.plant-active {
+    opacity: 0.5;
+}
+#plant-PeaShooter {
+    background: url('./media/Sprites/Seeds/PeaShooterSeed.png');
+}
+
+#plant-WallNut {
+    background: url('./media/Sprites/Seeds/WallNutSeed.png');
+}
+
+#plant-IcePea {
+    background: url('./media/Sprites/Seeds/IcePeaSeed.png');
+}
+
+#plant-SunFlower {
+    background: url('./media/Sprites/Seeds/SunFlowerSeed.png');
+}
+
+
+
+.player-information {
+    width: 30%;
+    height: 100%;
+    border: 2px solid black;
+    padding-top: 8px;
+
+
+}
+
+.player-information>p {
+    margin: 2px 15px;
+    font-weight: bold;
+    color: white;
+}
+
+
+
+#img-shovel {
+    background-color: red;
+    padding: 8px;
+    border-radius: 10px;
+    width: 2.7rem;
+    height: 2.7rem;
+    margin: 6px 0px 0px 23px;
+}
+
+.dave-yard {
+    width: 100%;
+    border: 2px solid black;
+    position: absolute;
+    bottom: 5%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.lane {
+    width: 100%;
+    height: 90px;
+    border: 2px solid black;
+    display: flex;
+
+}
+
+.lawn-mower {
+    width: 5rem;
+    height: 6rem;
+    border: 1px solid black;
+}
+
+.lane-grid {
+    position:  relative; 
+    height: 100%;
+    width: 85%;
+    /* border : 2px solid red;  */
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto;
+}
+
+.lane-column {
+    position: relative;
+    border: 1px solid white;
+    cursor: pointer;
+    /* background-color: green; */
+}
+
+
+.zombie-lane {
+ border: 2px solid red;
+ width: 4%;
+ position: absolute;
+ right: 0;
+ height: 20%;
+}
+
+
+.shooter {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 10px;
+    right: -5px;
+    z-index:  1000;
+}
+
+.sun {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: -5px;
+    right: -5px;
+    z-index:  99999999999900;
+}

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rayal Park</title>
+    <link rel="stylesheet" href="./styles2.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="nav__bar">
+          <div class="nav__logo">
+            <a href="#"><img src="./assets/logo.png" alt="logo" /></a>
+          </div>
+
+          <div class="nav__menu">
+            <i class="ri-menu-line" id="nav-menu"></i>
+          </div>
+        </div>
+        <ul class="nav__links" id="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#service">Service</a></li>
+          <li><a href="#explore">Explore</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="nav__btn__container">
+          <button class="btn nav__btn">Book Now</button>
+        </div>
+      </nav>
+
+      <div class="header__container">
+        <p class="header__subtitle">Simple - Unique - Friendly</p>
+        <h2 class="heaeder__title">
+          Make Yourself At Home <br />
+          <span>In Our Hotel</span>
+        </h2>
+      </div>
+    </header>
+
+    <main>
+      <!-- Sesi Booking -->
+      <section class="booking__container">
+        <form class="booking__form">
+          <div class="input__group">
+            <span><i class="ri-calendar-2-fill"></i></span>
+            <div>
+              <label for="check-in">Check In</label>
+              <input type="date" name="checkin" id="check-in" />
+            </div>
+          </div>
+          <div class="input__group">
+            <span><i class="ri-calendar-2-fill"></i></span>
+            <div>
+              <label for="check-out">Check Out</label>
+              <input type="date" name="checkout" id="check-out" />
+            </div>
+          </div>
+          <div class="input__group">
+            <span>
+              <i class="ri-user-fill"></i>
+            </span>
+            <div>
+              <label for="guest">Guest</label>
+              <input type="text" name="guest" id="guest" placeholder="Your name" />
+            </div>
+          </div>
+          <div class="input__group">
+            <button class="btn btn__booking__checkout">CHECK OUT</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Sesi About -->
+      <section class="about__container">
+        <div class="about__image">
+          <img src="./assets/about.jpg" alt="about.jpg" />
+        </div>
+        <div class="about__content">
+          <p>About Us</p>
+          <h2>The Best Holiday Start Here</h2>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci
+            minus dicta doloremque magni incidunt, quas ea quia quaerat odio
+            repellendus libero ipsam sit placeat aspernatur doloribus at quo
+            facilis iste! Alias saepe corrupti commodi cumque dolor quasi, fugit
+            iste temporibus necessitatibus quaerat tempore vel dolorum, quia eum
+            voluptas at omnis id natus. Harum minima fuga quo? Assumenda dolorum
+            atque necessitatibus!
+          </p>
+          <button class="btn about__btn">Read More</button>
+        </div>
+      </section>
+
+      <!-- Sesi Room -->
+      <section class="room__container">
+        <div class="room__heading">
+          <p class="room__subheader">Our Living</p>
+          <h2 class="room__header">The Most Memorable Start Here</h2>
+        </div>
+
+        <div class="room__grid">
+          <!-- Card 1 -->
+          <div class="room__card">
+            <div class="card__image">
+              <img src="./assets//room-1.jpg" alt="room1" />
+              <span><i class="ri-heart-fill"></i></span>
+              <span><i class="ri-paint-fill"></i></span>
+              <span><i class="ri-shield-star-fill"></i></span>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="room__card">
+            <div class="card__image">
+              <img src="./assets/room-2.jpg" alt="room-2" />
+              <span><i class="ri-heart-fill"></i></span>
+              <span><i class="ri-paint-fill"></i></span>
+              <span><i class="ri-shield-star-fill"></i></span>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="room__card">
+            <div class="card__image">
+              <img src="./assets/room-3.jpg" alt="room3" />
+              <span><i class="ri-heart-fill"></i></span>
+              <span><i class="ri-paint-fill"></i></span>
+              <span><i class="ri-shield-star-fill"></i></span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer></footer>
+
+    <script src="./main2.js"></script>
+  </body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LKS PVZ</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="gameContainer">
+      <section class="screen" id="home"></section>
+      <section class="screen" id="countdown"></section>
+      <section class="screen active" id="gameplay">
+        <main id="gameScreen">
+          <div class="game-dashboard">
+            <div class="sun-amount-container">
+              <p id="sun-amount">50</p>
+            </div>
+            <div class="plant-picker">
+              <div class="plant-slot" id="plant-SunFlower"></div>
+              <div class="plant-slot" id="plant-WallNut"></div>
+              <div class="plant-slot" id="plant-PeaShooter"></div>
+              <div class="plant-slot" id="plant-IcePea"></div>
+            </div>
+            <div class="player-information">
+              <p class="current-player-name">
+                Player : <span id="current-player-name">Nando</span>
+              </p>
+              <p class="current-player-score">
+                Score : <span id="current-player-score">40</span>
+              </p>
+              <p class="current-player-timer">
+                Time : <span id="current-player-timer">12:45</span>
+              </p>
+            </div>
+            <div class="shovel">
+              <img src="./media/Sprites/General/Shovel.png" id="img-shovel" />
+            </div>
+          </div>
+
+          <div class="dave-yard">
+            <section class="lane" id="lane-1">
+              <img
+                src="./media/Sprites/General/lawnmowerIdle.gif"
+                alt=""
+                class="lawn-mower"
+                id="lawn-mower-1"
+              />
+              <div id="lane-grid-1" class="lane-grid">
+                <div id="lane-column-1" class="lane-column">
+                </div>
+                <div id="lane-column-2" class="lane-column">
+                </div>
+                <div id="lane-column-3" class="lane-column">
+                  <!-- Nanti disini ada column plant jadi bisa diisi tapi pakai js -->
+                </div>
+                <div id="lane-column-4" class="lane-column"></div>
+                <div id="lane-column-5" class="lane-column"></div>
+                <div id="lane-column-6" class="lane-column"></div>
+                <div id="lane-column-7" class="lane-column"></div>
+                <div id="lane-column-8" class="lane-column"></div>
+              </div>
+              <div id="zombie-lane-1" class="zombie-lane"></div>
+            </section>
+
+            <section class="lane" id="lane-2">
+              <img
+                src="./media/Sprites/General/lawnmowerIdle.gif"
+                alt=""
+                class="lawn-mower"
+                id="lawn-mower-2"
+              />
+              <div id="lane-grid-2" class="lane-grid">
+                <div id="lane-column-1" class="lane-column"></div>
+                <div id="lane-column-2" class="lane-column"></div>
+                <div id="lane-column-3" class="lane-column"></div>
+                <div id="lane-column-4" class="lane-column"></div>
+                <div id="lane-column-5" class="lane-column"></div>
+                <div id="lane-column-6" class="lane-column"></div>
+                <div id="lane-column-7" class="lane-column"></div>
+                <div id="lane-column-8" class="lane-column"></div>
+              </div>
+              <div id="zombie-lane-2" class="zombie-lane"></div>
+            </section>
+            <section class="lane" id="lane-3">
+              <img
+                src="./media/Sprites/General/lawnmowerIdle.gif"
+                alt=""
+                class="lawn-mower"
+                id="lawn-mower-3"
+              />
+              <div id="lane-grid-3" class="lane-grid">
+                <div id="lane-column-1" class="lane-column"></div>
+                <div id="lane-column-2" class="lane-column"></div>
+                <div id="lane-column-3" class="lane-column"></div>
+                <div id="lane-column-4" class="lane-column"></div>
+                <div id="lane-column-5" class="lane-column"></div>
+                <div id="lane-column-6" class="lane-column"></div>
+                <div id="lane-column-7" class="lane-column"></div>
+                <div id="lane-column-8" class="lane-column"></div>
+              </div>
+              <div id="zombie-lane-3" class="zombie-lane"></div>
+            </section>
+            <section class="lane" id="lane-4">
+              <img
+                src="./media/Sprites/General/lawnmowerIdle.gif"
+                alt=""
+                class="lawn-mower"
+                id="lawn-mower-4"
+              />
+              <div id="lane-grid-4" class="lane-grid">
+                <div id="lane-column-1" class="lane-column"></div>
+                <div id="lane-column-2" class="lane-column"></div>
+                <div id="lane-column-3" class="lane-column"></div>
+                <div id="lane-column-4" class="lane-column"></div>
+                <div id="lane-column-5" class="lane-column"></div>
+                <div id="lane-column-6" class="lane-column"></div>
+                <div id="lane-column-7" class="lane-column"></div>
+                <div id="lane-column-8" class="lane-column"></div>
+              </div>
+
+              <div id="zombie-lane-4" class="zombie-lane"></div>
+            </section>
+            <section class="lane" id="lane-5">
+              <img
+                src="./media/Sprites/General/lawnmowerIdle.gif"
+                alt=""
+                class="lawn-mower"
+                id="lawn-mower-5"
+              />
+              <div id="lane-grid-5" class="lane-grid">
+                <div id="lane-column-1" class="lane-column"></div>
+                <div id="lane-column-2" class="lane-column"></div>
+                <div id="lane-column-3" class="lane-column"></div>
+                <div id="lane-column-4" class="lane-column"></div>
+                <div id="lane-column-5" class="lane-column"></div>
+                <div id="lane-column-6" class="lane-column"></div>
+                <div id="lane-column-7" class="lane-column"></div>
+                <div id="lane-column-8" class="lane-column"></div>
+              </div>
+              <div id="zombie-lane-5" class="zombie-lane"></div>
+            </section>
+          </div>
+        </main>
+
+        <div id="ladeboard"></div>
+      </section>
+      <section class="screen" id="pause"></section>
+      <section class="screen" id="gameover"></section>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+<data>
+        <person>
+            <name>John</name>
+            <gender>Male</gender>
+        </person>
+        <person>
+            <name>Budi</name>
+            <gender>Male</gender>
+        </person>
+        <person>
+            <name>Ani</name>
+            <gender>Female</gender>
+        </person>
+        <person>
+            <name>Randi</name>
+            <gender>Male</gender>
+        </person>
+</data>

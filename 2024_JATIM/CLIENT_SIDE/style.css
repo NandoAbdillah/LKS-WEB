@@ -1,0 +1,296 @@
+body {
+    margin: 0;
+    padding: 0;
+    user-select: none;
+
+}
+
+#game-screen {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.screen {
+    width: 1000px;
+    height: 600px;
+    display: none;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+}
+
+.screen.active {
+    display: flex;
+}
+
+.img-sooter,
+.img-guns,
+.img-target {
+    width: 15%;
+    height: 10%;
+}
+
+
+.user-inputer {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.main-home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+}
+
+
+
+#input-username,
+#game-level {
+    width: 300px;
+    height: 30px;
+    border-radius: 8px;
+    border: 4px solid gray;
+    background-color: lightgray;
+
+}
+
+#game-level {
+    width: 310px !important;
+    height: 38px !important;
+}
+
+.hide {
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
+.guns,
+.shoot-target {
+    text-align: center;
+    margin: 30px auto;
+}
+
+#startGame,
+#openInstruction {
+    width: 120px;
+    height: 40px;
+    border-radius: 10px;
+    border-color: transparent;
+}
+
+.success {
+    background-color: green;
+    color: white;
+}
+
+.danger {
+    background-color: red;
+    color: white;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+.sidebar-instruction {
+    position: relative;
+    border: 1px solid black;
+    height: 70vh;
+    width: 120vh;
+    padding: 30px 50px;
+    background-color: darkslategray;
+    border-radius: 10px;
+    color: white;
+}
+
+.btn-close-instruction {
+    position: absolute;
+    right: 20px;
+    top: 30px;
+    width: 35px;
+    height: 35px;
+    border-radius: 5px;
+    border-color: transparent;
+
+}
+
+#numberCountdown {
+    font-size: 8rem;
+    font-weight: bold;
+    animation: countdownAnimation 1s infinite;
+
+}
+
+@keyframes countdownAnimation {
+    0% {
+        transform: scale(0.5);
+    }
+
+    50% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0.5);
+    }
+
+
+}
+
+#gameplay {
+    border: 1px solid black;
+    position: relative !important;
+    justify-content: start !important;
+    align-items: baseline !important;
+    width: 1200px !important;
+}
+
+#gameCanvas {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 80%;
+    height: 100%;
+    background-image: url(./Sprites/background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: url('./Sprites/pointer.png'), auto;
+    z-index: 3;
+}
+
+.game-nav-top {
+    position: absolute;
+    top: 0;
+    display: flex;
+    width: 80%;
+    height: 10%;
+    background-color: black;
+    opacity: 0.5;
+    color: white;
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: 5;
+}
+
+.game-ladeboard {
+    position: absolute;
+    right: 0;
+    width: 20%;
+    height: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
+    /* z-index: 4; */
+
+}
+
+.select-ladeboard {
+    width: 200px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.gameplay-gun {
+    position: absolute;
+    bottom: 0;
+    z-index: 4;
+    width: 90%;
+    text-align: center;
+}
+
+
+#img-gameplay-gun {
+    width: 15rem;
+    height: 15rem;
+
+}
+
+.gun-changed {
+    animation: gunChanged 0.5s ease-in-out ;
+}
+
+@keyframes gunChanged {
+    0% {
+        transform: scale(1) rotate(0deg) translate(0,0);
+    }
+    50% {
+        transform: scale(0.8) rotate(5deg) translate(10%, 100%);
+    }
+    100% {
+        transform : scale(1) rotate(0deg) translate(0,0);
+    }
+}
+
+.gameover-dialog , .pause-dialog  {
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    background-color: darkslategray ;
+    color: white;
+}
+
+.btn-gameover, .btn-pause {
+    margin: 30px 10px;
+}
+
+#btn-save, #btn-restart , #btn-continue, #btn-exit {
+/*     
+    padding: 10px 20px; */
+    height: 40px;
+    width: 80px;
+    color: white;
+    border-radius: 5px;
+    margin-right: 10px;
+    border-color: transparent;
+}
+
+
+#pause.active , #countdown.active {
+    position: fixed !important ;
+    top : 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center !important;
+    align-items: center !important;
+
+}
+
+.player_datas {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.data {
+    background-color: gray;
+    margin: 10px 20px;
+    border-radius: 10px;
+    text-align: left;
+    padding : 10px;
+}
+
+.data p {
+    font-size: 0.8rem;
+    text-align: left;
+    margin: 0;
+}
+#data_score {
+    font-weight: bolder;
+}

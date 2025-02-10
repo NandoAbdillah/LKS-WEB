@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=\, initial-scale=1.0">
+  <title>Generate DOC File</title>
+</head>
+<body>
+  <h1>Generate DOC File</h1>
+  <form action="http://localhost/lks2025/generate_doc.php"
+  method="post"
+  >
+  <label for="title">File title:</label> <br>
+  <input type="text" id="title" name="title" required > <br> <br>
+
+  <label for="content">File Content</label> <br>
+  <textarea id="content" name="content" rows="10" cols="50" required ></textarea> <br> <br>
+
+  <button type="submit">Generate Doc File</button>
+  </form>
+</body>
+</html>

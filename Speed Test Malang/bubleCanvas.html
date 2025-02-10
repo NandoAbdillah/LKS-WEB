@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bubble Canvas</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      canvas {
+        background-color: rgba(58, 169, 254, 0.952);
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="500" height="500"></canvas>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const canvas = document.getElementById("myCanvas");
+        const ctx = canvas.getContext("2d");
+
+        class Bubble {
+          constructor() {
+            this.radius = Math.ceil(Math.random() * 50);
+            this.y = canvas.height;
+            this.x = this.getNonOverlappingPosition();
+          }
+
+          drawBubble() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = "#FFFFFF";
+            ctx.fill();
+          }
+
+          moveBubble() {
+            this.y -= 2;
+          }
+
+          getNonOverlappingPosition() {
+            let x;
+            let overlapping;
+            do {
+              x = Math.ceil(Math.random() * canvas.width);
+              overlapping = listBubbles.some(
+                (bubble) =>
+                  Math.hypot(bubble.x - x, bubble.y - this.y) <
+                  bubble.radius + this.radius
+              );
+            } while (overlapping);
+            return x;
+          }
+
+           
+        }
+
+        let listBubbles = [];
+        const lengthBubble = 5;
+
+        const startAnimate = () => {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          // Buang bubble yang sudah melewati batas atas
+          listBubbles = listBubbles.filter(
+            (bubble) => bubble.y + bubble.radius >= 0
+          );
+
+          listBubbles.forEach((bubble) => {
+            bubble.moveBubble();
+            bubble.drawBubble();
+          });
+
+          requestAnimationFrame(startAnimate);
+        };
+
+        let isAnimating = false;
+        canvas.addEventListener("click", () => {
+          // Tambahkan 5 bubble baru ke array tanpa menghapus yang lama
+          listBubbles.push(
+            ...Array.from({ length: lengthBubble }, () => new Bubble())
+          );
+
+          if (!isAnimating) {
+            startAnimate();
+            isAnimating = true;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

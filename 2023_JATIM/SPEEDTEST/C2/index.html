@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SPLIT IMAGE</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        margin: 10px auto;
+        width: 100%;
+        height: 100vh;
+      }
+
+      .inputter {
+        text-align: center;
+      }
+
+      .inputter > input {
+        margin-right: 20px;
+      }
+
+      #img-container {
+        background: url("./image.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: 50%;
+        width: 100vw;
+        height: 95vh;
+        margin: 20px 0;
+        display: block;
+        border: 2px solid black;
+      }
+
+      .row {
+        display: flex;
+      }
+
+      .box {
+        border: 2px solid white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="inputter">
+        <label for="inputRow">X : </label>
+        <input type="number" required id="inputRow" placeholder="input x" />
+        <label for="inputCol">Y: </label>
+        <input type="number" required id="inputCol" placeholder="input y" />
+        <button id="split">Split Image</button>
+      </div>
+      <div id="img-container">
+        <div class="box"></div>
+      </div>
+    </div>
+
+    <script>
+      const inputRow = document.getElementById("inputRow");
+      const inputCol = document.getElementById("inputCol");
+
+      const imageContainer = document.getElementById("img-container");
+
+      let x , y, boxHeight, boxWidth;
+
+      const createBoxElement = () => {
+        console.log(x,y);
+
+
+        for (let row = 0; row < y; row++) {
+          const rowWrapper = document.createElement("div");
+          rowWrapper.classList.add("row");
+          imageContainer.appendChild(rowWrapper);
+          <!-- console.log("row " + row); -->
+
+          for (let col = 0; col < x; col++) {
+            const box = document.createElement("div");
+            box.style.width = boxWidth + "px";
+            box.style.height = boxHeight + "px";
+            box.classList.add("box");
+            rowWrapper.appendChild(box);
+          }
+        }
+      };
+
+      document.getElementById("split").addEventListener("click", () => {
+        x = inputRow.value;
+        y = inputCol.value;
+
+        const imgHeight = imageContainer.offsetHeight;
+        const imgWidth = imageContainer.offsetWidth;
+
+        //box width sama width image dibagi banyak sumbu x
+        boxWidth = imgWidth / x;
+        boxHeight = imgHeight / y;
+
+        createBoxElement();
+      });
+    </script>
+  </body>
+</html>

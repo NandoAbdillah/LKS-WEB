@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mouse Style with Animation</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f0f0;
+      overflow: hidden;
+      cursor: none;
+    }
+
+    .container {
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+
+    .cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background-color: black;
+      clip-path: polygon(0 0, 100% 50%, 0 100%);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .click-effect {
+      position: fixed;
+      width: 0;
+      height: 0;
+      background-color: rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      animation: click-animation 0.5s ease-out;
+    }
+
+    @keyframes click-animation {
+      from {
+        width: 0;
+        height: 0;
+        opacity: 0.5;
+      }
+      to {
+        width: 100px;
+        height: 100px;
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">Klik di mana saja untuk melihat efek lingkaran transparan!
+  
+  
+    <p>Klik di mana saja untuk melihat efek lingkaran transparan!</p>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Create custom cursor element
+      const cursor = document.createElement("div");
+      cursor.classList.add("cursor");
+      document.body.appendChild(cursor);
+
+      // Update cursor position
+      document.addEventListener("mousemove", (e) => {
+        cursor.style.left = `${e.clientX}px`;
+        cursor.style.top = `${e.clientY}px`;
+      });
+
+      // Add click animation
+      document.addEventListener("mousedown", (e) => {
+        const effect = document.createElement("div");
+        effect.classList.add("click-effect");
+        effect.style.left = `${e.clientX}px`;
+        effect.style.top = `${e.clientY}px`;
+        document.body.appendChild(effect);
+
+        // Remove the effect after animation
+        effect.addEventListener("animationend", () => {
+          effect.remove();
+        });
+      });
+    });
+  </script>
+</body>
+</html>

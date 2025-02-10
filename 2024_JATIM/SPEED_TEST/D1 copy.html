@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bar Chart</title>
+
+  <style>
+   
+
+    .chart-container {
+      width: 600px;
+      height: 400px;
+      display: flex;
+      position: relative;
+      margin: 20px auto;
+      border: 1px solid black;
+
+    }
+
+    .y-axis {
+      width: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: right;
+      padding-right: 10px;
+      font-size: 12px;
+    }
+
+    .chart-area {
+      width: calc(100%- 50px);
+      position: relative;
+    }
+
+    .bars {
+      position: relative;
+      bottom:  0;
+      height: 90%;
+      display: flex;
+      padding: 0 20px;
+      gap: 20px;
+      justify-content: space-around;
+      align-items: flex-end;
+      width: 100%;
+    }
+
+    .bar {
+      width: 40px;
+      background-color: grey;
+      color: white;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .x-axis {
+      position:  absolute;
+      bottom: -30px;
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+    }
+
+    .x-label {
+      font-size: 12px;
+      text-align: center;
+      width: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="chart-container">
+    <div class="y-axis" id="y-axis"></div>
+
+    <div class="chart-area">
+      <div class="bars" id="bars"></div>
+      <div class="x-axis" id="x-axis"></div>
+    </div>
+
+  </div>
+
+  <script>
+    async function fetchData() {
+      const response = await fetch('./asset/random.php')
+      const data = await response.json()
+
+      const numberOfBars = data.length
+      const selectedData = data.slice(0, numberOfBars);
+
+      createBarChart(selectedData);
+    }
+
+    function createBarChart(data) {
+      const barsContainer = document.getElementById('bars');
+      const xAxisContainer = document.getElementById('x-axis');
+      const yAxisContainer = document.getElementById('y-axis');
+
+      const maxValue = Math.max(...data.map(item => item.value))
+      const roundedMaxValue = Math.ceil(maxValue / 100) * 100;
+
+      
+      for(let i = roundedMaxValue; i>=0; i-=100) {
+        const yLabel = document.createElement("div")
+        yLabel.textContent = i;
+        yLabel.style.flex = '1';
+        yAxisContainer.appendChild(yLabel)
+      }
+
+      data.forEach(item => {
+
+        const bar = document.createElement("div")
+
+        const barHeight = (item.value / roundedMaxValue)  * 100
+        bar.className = 'bar'
+        bar.style.height = `${barHeight}%`;
+        bar.style.backgroundColor =  `rgb(${Math.random()* 255}, ${Math.random() * 255}, ${Math.random()*255, Math.random() * 255})`;
+        bar.innerHTML = item.value
+
+        barsContainer.appendChild(bar);
+
+        const xLabel = document.createElement('div');
+        xLabel.className = 'x-label'
+        xLabel.textContent = item.name;
+
+        xAxisContainer.appendChild(xLabel)
+      })
+      
+    }
+
+    fetchData();
+    
+  </script>
+  
+</body>
+</html>

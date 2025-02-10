@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sooter Game</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="game-screen">
+      <div id="home" class="screen active">
+        <div class="main-home">
+          <img class="img-sooter" src="./Sprites/shooter.png" />
+
+          <div class="user-inputer">
+            <input
+              type="text"
+              name="username"
+              id="input-username"
+              placeholder="Input Username"
+              required
+            />
+
+            <select name="level" id="game-level" required>
+              <option value="" disabled selected>Select Level</option>
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+          </div>
+
+          <div class="guns">
+            <label for="game-guns1">
+              <img class="img-guns" src="./Sprites/gun1.png" />
+            </label>
+            <input type="radio" id="game-guns1" value="gun1" name="game-guns" />
+            <label for="game-guns2">
+              <img class="img-guns" src="./Sprites/gun2.png" />
+            </label>
+            <input type="radio" id="game-guns2" value="gun2" name="game-guns" />
+          </div>
+
+          <div class="shoot-target">
+            <label for="game-target1">
+              <img class="img-target" src="./Sprites/target1.png" />
+            </label>
+            <input
+              type="radio"
+              id="game-target1"
+              value="target1"
+              name="game-target"
+            />
+            <label for="game-target2">
+              <img class="img-target" src="./Sprites/target2.png" />
+            </label>
+            <input
+              type="radio"
+              id="game-target2"
+              value="target2"
+              name="game-target"
+            />
+            <label for="game-target3">
+              <img class="img-target" src="./Sprites/target3.png" />
+            </label>
+            <input
+              type="radio"
+              id="game-target3"
+              value="target3"
+              name="game-target"
+            />
+          </div>
+
+          <div class="button-action">
+            <button id="startGame" class="btn success">Play Game</button>
+            <button id="openInstruction" class="btn danger">Instruction</button>
+          </div>
+        </div>
+
+        <div class="sidebar-instruction hide">
+          <h1>How To play Game</h1>
+
+          <button class="btn-close-instruction danger">X</button>
+          <ol>
+            <li>Input Username</li>
+            <li>Point the pointer at the target</li>
+            <li>Click to shoot</li>
+            <li>Get as many points as possible</li>
+            <li>Enjoy!</li>
+          </ol>
+        </div>
+      </div>
+
+      <div id="countdown" class="screen">
+        <p id="numberCountdown">3</p>
+      </div>
+
+      <div id="gameplay" class="screen">
+        <div class="game-nav-top">
+          <div>
+            <span id="player-name">Nama</span>
+          </div>
+
+          <div class="">
+            <span class="label">Score : </span>
+            <span id="player-score">0</span>
+          </div>
+
+          <div class="">
+            <span class="label">Time : </span>
+            <span id="player-timer">0</span>
+          </div>
+
+        </div>
+        <div class="game-content">
+          <canvas id="gameCanvas" width="960" height="620"></canvas>
+
+          <div class="gameplay-gun">
+            <img id="img-gameplay-gun" class="" src="" />
+          </div>
+
+          <div class="game-ladeboard active ">
+            <h3>LADEBOARD</h3>
+            <select class="select-ladeboard">
+              <option value="score">Sort By Score</option>
+              <option value="name">Sort By Name</option>
+            </select>
+
+            <div class="player_datas">
+              
+            </div>
+          </div>
+        </div>
+
+        
+      </div>
+
+      <div id="pause" class="screen">
+        <div class="pause-dialog">
+          <h2>Game Pause</h2>
+  
+          <div class="btn-pause">
+            <button id="btn-continue" class="btn success" >Continue</button>
+            <button id="btn-exit" class="btn danger">Exit</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="gameover" class="screen ">
+
+        <div class="gameover-dialog">
+          <h2>Game Over</h2>
+          <div class="player-name-over">
+            <span>Player Name : </span>
+            <span id="player-name-over">Nando</span>
+          </div>
+          <div class="score-name-over">
+            <span>Score : </span>
+            <span id="player-score-over">10</span>
+          </div>
+  
+          <div class="btn-gameover">
+            <button id="btn-save" class="btn success" >Save</button>
+            <button id="btn-restart" class="btn danger">Restart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

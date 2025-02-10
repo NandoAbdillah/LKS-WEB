@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+
+
+    <body>
+
+        <!-- Pmebisaan menulis header dengan cepat -->
+
+        <!-- Header  berisi logo, navigasi , bottom   -->
+         <header>
+            <h1>Welcome to our website</h1>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+         </header>
+
+
+         <!-- Main konten berisi konten inti dalam html dan di dalamnya berisi section section  sesuai konteks -->
+
+         <main>
+
+            <!-- Hero section merupakan tampilan pertama yang langusng dilihat, sisebut hero section karena ia pahlawan yang dapat menarik pengunjung web pertama kali , karena dia adalah first imperesion atau impresi pertama bagi userg -->
+            <section id="hero">
+                <h2>Your Trusted Partner</h2>
+                <p>We provide exceptional services to help you succed.</p>
+                <button>Get Started</button>
+            </section>
+
+
+            <!-- Dialnjutkan dengan section section lainnya yang akan di tampilkan di webnya -->
+
+            <section id="about">
+                <h2>About Us</h2>
+                <article>
+                    <p>
+                        Our company was founded wit h ission t o deliver outstanding clients.
+                    </p>
+                    <blockquote>
+                        "Excellect is not as skill; it's an attitude." -Ralph Marston
+                    </blockquote>
+                </article>
+            </section>
+
+            <section id="services">
+                <h2>Our Services</h2>
+                <ul>
+                    <li>Web Development</li>
+                    <li>Mobile App Development</li>
+                    <li>Digital Marketing</li>
+                </ul>
+            </section>
+
+            <section id="media">
+                <h2>Our Projects</h2>
+                <!-- Figure digunakan untuk menampilkan media yang ingin ditampilkan dalam web, setiap media satu figure -->
+                <figure>
+                    <img src="#" alt="Project Image">
+                    <figcaption>Project : Innovative Web App</figcaption>
+                </figure>
+
+                <figure>
+                    <video controls>
+                        <source src="#" type="video/mp4">
+                        Your browser does not support the video tag
+                    </video>
+                </figure>
+
+                <aside>
+                    <p>Want to learn more? <a href="#contact">Contact us today!</a></p>
+                </aside>
+
+
+            </section>
+
+         </main>
+        
+         <!-- section adalah bagian dari web yang bukan merupakan kontent utama , seperti kontak ini terletak di luar main dan tidak dimasukkan di dalam tag main -->
+         <section id="contact">
+            <h2>COntact Us</h2>
+            <address>
+                Jl.Mangga I , Sruni , Gedangan , Sidoarjo <br>
+                Email : <a href="mailto:nandoabdilah1606@gmail.com">nandoabdilah1606@gmail.com</a>
+            </address>
+
+            <form action="#" method="post">
+                <fieldset>
+                    <legend>Send Us a Message</legend>
+                    <label for="name">Name :    </label>
+                    <input type="email" placeholder="Enter your email"  name="email" id="email">
+                    <!-- dan inputan lainnya lagi -->
+                </fieldset>
+            </form>
+         </section>
+
+
+         <!-- Footer adalah tag untuk kaki element  -->
+          <footer>
+            <p>&copy; 2025 My Website All rights reserved.</p>
+            <time datetime="2025-01-28">Updataed: January 28, 2025</time>
+          </footer>
+    </body>
+</html>

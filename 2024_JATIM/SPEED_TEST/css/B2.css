@@ -1,0 +1,30 @@
+.rating-container {
+    position: relative;
+    width: 250px; /* Sesuaikan dengan lebar gambar stars.png */
+    height: 50px; /* Sesuaikan dengan tinggi gambar stars.png */
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.stars-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0; /* Awalnya tidak terisi */
+    background: linear-gradient(to right, gold 0%, gold 100%); /* Warna isi bintang */
+    z-index: 1; /* Lapisan di bawah gambar overlay */
+    transition: width 0.3s ease; /* Animasi pengisian */
+}
+
+.stars-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: url('../asset/stars.png') no-repeat;
+    background-size: contain; /* Sesuaikan ukuran gambar */
+    z-index: 2; /* Lapisan paling atas */
+    pointer-events: none; /* Supaya gambar overlay tidak mengganggu hover */
+}

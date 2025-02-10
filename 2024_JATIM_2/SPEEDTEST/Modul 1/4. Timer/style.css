@@ -1,0 +1,32 @@
+body{
+    text-align: center;
+    margin-top: 50px;
+}
+
+#timer{
+    font-size: 10em;
+    font-weight: bold;
+    color: #000;
+}
+.btn{
+    font-size: 1em;
+    color: #fff;
+    padding: 8px 12px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.btn.btn-primary{
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn.btn-danger{
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn.btn-warning{
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
