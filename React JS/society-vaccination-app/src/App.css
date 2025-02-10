@@ -1,0 +1,90 @@
+:root {
+    --bg-blue-dark: #1A1A40;
+    --bg-light-gray: #D1D1D1;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInTop 1.2s ease-in-out forwards;
+}
+
+.delay {
+    animation-delay: 200ms !important;
+}
+
+
+@keyframes fadeInTop {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+* {
+    scroll-behavior: smooth;
+}
+
+
+.btn-game {
+    background-color: transparent;
+    color: var(--bg-blue-dark);
+    font-weight: 500;
+    border-color: var(--bg-blue-dark);
+    transition: all;
+    transition-duration: 0.5s;
+}
+
+
+.card {
+    transition: all;
+    transition-duration: 0.8s;
+}
+
+.card:hover {
+    transform: translateY(-5%);
+
+}
+
+.btn-game:hover {
+    box-shadow: 2px 3px 15px rgba(197, 192, 197, 0.5) !important;
+    transform: translateY(-5%);
+    color: white;
+    background-color: var(--bg-blue-dark);
+    border-color: var(--bg-blue-dark);
+}
+
+.bg-game-dark {
+    background-color: var(--bg-blue-dark);
+}
+
+.btn-game-light {
+
+    color: var(--bg-light-gray);
+    border-color: var(--bg-light-gray);
+}
+
+
+.btn-game-light:hover,
+.btn-game-light.active {
+    color: var(--bg-blue-dark);
+    font-weight: bolder;
+    background-color: #ffff;
+    box-shadow: 5px 5px 15px rgba(255, 255, 255, 0.5);
+}
+
+.btn-game-light:hover {
+    box-shadow: 5px 5px 15px rgba(255, 255, 255, 0.5);
+    opacity: 0.5;
+    font-weight: bold;
+}
+
+.card-bg-glass {
+    background: rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(10px) !important;
+}
