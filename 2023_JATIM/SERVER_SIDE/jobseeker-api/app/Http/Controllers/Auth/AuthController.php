@@ -46,7 +46,7 @@ class AuthController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required',
-            'id_card_number' => 'required|numeric|max:8',
+            'id_card_number' => 'required|numeric',
             'password' => 'required',
             'born_date' => 'required|date',
             'gender' => 'required|in:male,female',
@@ -66,8 +66,8 @@ class AuthController extends Controller
         ]);
 
         $token = $society->createToken('auth_token')->plainTextToken;
-        $society->login_tokens = $token;
-        $society->save();
+        // $society->login_tokens = $token;
+        // $society->save();
 
         return (new SocietyResource($society))->additional(['token' => $token]);
     }

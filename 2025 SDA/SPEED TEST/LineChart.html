@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Line Chart</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Line Chart</h2>
+    <canvas id="myChart" width="600" height="400"></canvas>
+
+    <script>
+        const canvas = document.getElementById('myChart');
+        const ctx = canvas.getContext('2d');
+
+        // Data
+        const labels = [1, 2, 3, 4, 5, 6, 7, 8];
+        const data = [13, 20, 70, 40, 55, 15, 45, 30];
+
+        // Ukuran Grafik
+        const padding = 50;
+        const width = canvas.width - padding * 2;
+        const height = canvas.height - padding * 2;
+
+        // Hitung Skala
+        const maxData = Math.max(...data);
+        const minData = Math.min(...data);
+
+        const xStep = width / (labels.length - 1);
+        const yScale = height / (maxData - minData);
+
+        // Gambar sumbu X dan Y
+        ctx.beginPath();
+        ctx.moveTo(padding, padding);
+        ctx.lineTo(padding, canvas.height - padding);
+        ctx.lineTo(canvas.width - padding, canvas.height - padding);
+        ctx.stroke();
+
+        // Gambar label sumbu X
+        ctx.textAlign = 'center';
+        ctx.font = '14px Arial';
+        
+        for (let i = 0; i < labels.length; i++) { // FIXED: labels.height -> labels.length
+            let x = padding + i * xStep;
+            ctx.fillText(labels[i], x, canvas.height - padding + 20);
+        }
+
+        // Gambar label sumbu Y
+        ctx.textAlign = 'right';
+        for (let i = 0; i <= 5; i++) {
+            let yValue = minData + (i * (maxData - minData) / 5);
+            let y = canvas.height - padding - (yValue - minData) * yScale;
+            ctx.fillText(Math.round(yValue), padding - 10, y);
+        }
+
+        // Gambar garis grafik
+        ctx.beginPath();
+        ctx.strokeStyle = 'red';
+        ctx.lineWidth = 2;
+        for (let i = 0; i < data.length; i++) {
+            let x = padding + i * xStep;
+            let y = canvas.height - padding - (data[i] - minData) * yScale; // FIXED: canva.height -> canvas.height
+            if (i === 0) {
+                ctx.moveTo(x, y);
+            } else {
+                ctx.lineTo(x, y);
+            }
+        }
+        ctx.stroke();
+        ctx.closePath();
+        
+    </script>
+    
+</body>
+</html>

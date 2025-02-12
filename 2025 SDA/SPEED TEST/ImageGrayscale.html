@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Comparison</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+            user-select: none;
+        }
+        .container {
+            position: relative;
+            width: 600px;
+            max-width: 100%;
+            margin: auto;
+        }
+        .img-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        .img-wrapper img {
+            width: 100%;
+            display: block;
+            position: absolute;
+        }
+        .grayscale {
+            filter: grayscale(100%);
+            clip-path: inset(0 50% 0 0);
+        }
+        .slider {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: white;
+            cursor: ew-resize;
+            transform: translateX(-50%);
+        }
+        .slider-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h2>Compare Image</h2>
+    <div class="container">
+        <div class="img-wrapper">
+            <img src="./assets/home.jpg" alt="Normal Image">
+            <img src="./assets/home.jpg" alt="Grayscale Image" class="grayscale" id="grayImage">
+            <div class="slider" id="slider">
+                <div class="slider-circle"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const slider = document.getElementById("slider");
+        const grayImage = document.getElementById("grayImage");
+        const container = document.querySelector(".container");
+
+        let isDragging = false;
+
+        slider.addEventListener("mousedown", () => {
+            isDragging = true;
+        });
+
+        document.addEventListener("mouseup", () => {
+            isDragging = false;
+        });
+
+        document.addEventListener("mousemove", (event) => {
+            if (!isDragging) return;
+            let rect = container.getBoundingClientRect();
+            let offsetX = event.clientX - rect.left;
+            let percentage = (offsetX / rect.width) * 100;
+            if (percentage < 0) percentage = 0;
+            if (percentage > 100) percentage = 100;
+            slider.style.left = `${percentage}%`;
+            grayImage.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+        });
+    </script>
+</body>
+</html>

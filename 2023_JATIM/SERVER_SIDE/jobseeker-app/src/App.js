@@ -41,7 +41,8 @@ function App() {
               component={RequestDataValidation}
             />
             <Router path='/job-vacancies' component={JobVacancies} />
-            <Router path='/detail-job' component={DetailJobVacancy} />
+            <Router path='/detail-job/:id' component={DetailJobVacancy} />
+
           </div>
         </div>
       )}

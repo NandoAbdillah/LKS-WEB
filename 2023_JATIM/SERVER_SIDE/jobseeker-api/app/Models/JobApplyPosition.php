@@ -33,4 +33,5 @@ class JobApplyPosition extends Model
     {
         return $this->belongsTo (AvailablePosition::class , 'position_id', 'id');
     }
+    
 }

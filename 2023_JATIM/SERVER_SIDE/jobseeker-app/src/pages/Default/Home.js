@@ -8,7 +8,8 @@ export default function Home() {
   const { setNamePage, token, showNotification } = useAuth();
 
   const [validationData, setValidationData] = useState(null);
-  const [jobCategory , setJobCategory] = useState(null);
+  const [jobCategory, setJobCategory] = useState(null);
+  const [societyJobApplication, setSocietyJonApplication] = useState(null);
 
   useEffect(() => {
     setNamePage("Dashboard");
@@ -44,7 +45,7 @@ export default function Home() {
         const response = await httpClient(
           `http://127.0.0.1:8000/api/v1/job_categories/${validationData.job_category_id}`,
           {
-            method : 'GET',
+            method: "GET",
             token: token,
           }
         );
@@ -60,6 +61,27 @@ export default function Home() {
     fetchJobCategory();
   }, [validationData]); // Dipanggil setiap kali validationData berubah
 
+  useEffect(() => {
+    const societyFetchJobApplication = async () => {
+      try {
+        const response = await httpClient(
+          "http://127.0.0.1:8000/api/v1/applications",
+          {
+            method: "GET",
+            token: token,
+          }
+        );
+
+        const data = response.data.data[0];
+        console.log(data);
+        setSocietyJonApplication(data);
+      } catch (error) {
+        showNotification("danger", error.message);
+      }
+    };
+
+    societyFetchJobApplication();
+  }, []);
   return (
     <div className="col-10 mx-auto">
       <div className="mb-5">
@@ -85,9 +107,7 @@ export default function Home() {
 
                       <tr>
                         <th className="px-3 py-2">Job Category</th>
-                        <td className="px-3 py-2">
-                          {jobCategory}
-                        </td>
+                        <td className="px-3 py-2">{jobCategory}</td>
                       </tr>
 
                       <tr>
@@ -150,55 +170,60 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="row">
-          <div className="col-12">
-            <div className="alert alert-warning" role="alert">
-              Your validation must be approved by validator before
+        {societyJobApplication !== null ? (
+          <div className="row">
+            <div className="col-6 ">
+              <div className="card">
+                <h5 className="card-header">{societyJobApplication.company}</h5>
+                <div className="m-0">
+                  <table className="table table-bordered table-striped table-sm m-0">
+                    <tbody>
+                      <tr>
+                        <th className="px-3 py-2">Address</th>
+                        <td className="px-3 py-2">
+                          {societyJobApplication.address}
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <th className="px-3 py-2">Position</th>
+                        <td>
+                          <ul>
+                            <li>
+                              Desain Grafis{" "}
+                              <span className="badge text-bg-info">
+                                Pending
+                              </span>
+                            </li>
+                          </ul>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <th className="px-3 py-2">Apply Date</th>
+                        <td className="px-3 py-2">{societyJobApplication.created_at}</td>
+                      </tr>
+
+                      <tr>
+                        <th className="px-3 py-2">Notes</th>
+                        <td className="px-3 py-2">I was the better one</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
+            <div className="col-6"></div>
           </div>
-        </div>
-        <div className="row">
-          <div className="col-6 ">
-            <div className="card">
-              <h5 className="card-header">PT.Maju Mundur Sejahtera</h5>
-              <div className="m-0">
-                <table className="table table-bordered table-striped table-sm m-0">
-                  <tbody>
-                    <tr>
-                      <th className="px-3 py-2">Address</th>
-                      <td className="px-3 py-2">
-                        Jl.Mangga I RT.05 RW.02 Sruni
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <th className="px-3 py-2">Position</th>
-                      <td>
-                        <ul>
-                          <li>
-                            Desain Grafis{" "}
-                            <span className="badge text-bg-info">Pending</span>
-                          </li>
-                        </ul>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <th className="px-3 py-2">Apply Date</th>
-                      <td className="px-3 py-2">June 12, 2024</td>
-                    </tr>
-
-                    <tr>
-                      <th className="px-3 py-2">Notes</th>
-                      <td className="px-3 py-2">I was the better one</td>
-                    </tr>
-                  </tbody>
-                </table>
+        ) : (
+          <div className="row">
+            <div className="col-12">
+              <div className="alert alert-warning" role="alert">
+                Your validation must be approved by validator before
               </div>
             </div>
           </div>
-          <div className="col-6"></div>
-        </div>
+        )}
       </div>
     </div>
   );

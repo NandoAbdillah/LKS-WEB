@@ -11,6 +11,7 @@ class Validation extends Model
     use HasFactory;
 
     protected $fillable = [
+        'validator_id',
         'job_category_id',
         'society_id',
         'status',

@@ -741,6 +741,14 @@ document.addEventListener("DOMContentLoaded", () => {
   let zombieLaneList = [];
   let zombieList = Array.from({ length: 5 }, () => []);
 
+  // 1 Zombie setiap 5 detik
+     
+  const regenerateZombie = () => {
+     zombieInterval = setInterval(()=> {
+      generateZombie();
+     }, 5000);
+  }
+
   const generateZombie = () => {
     const randomLaneRow = Math.floor(Math.random() * 5);
     zombieLaneList.push(randomLaneRow);
@@ -901,7 +909,8 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   renderGameplayLayout();
-  generateZombie();
+  // generateZombie();
+  regenerateZombie();
   setShootInterval();
 
   showCoordinatBlock();

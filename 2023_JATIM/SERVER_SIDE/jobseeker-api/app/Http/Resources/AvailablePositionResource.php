@@ -15,6 +15,7 @@ class AvailablePositionResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'position' => $this->position,
             'capacity' => $this->capacity,
             'apply_capacity' => $this->apply_capacity,

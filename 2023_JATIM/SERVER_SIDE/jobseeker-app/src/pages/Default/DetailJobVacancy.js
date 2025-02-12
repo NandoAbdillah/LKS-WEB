@@ -1,73 +1,145 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
+import { httpClient } from "../../utils/httpClient";
 
-export default function DetailJobVacancy() {
-  const {setNamePage} = useAuth();
+export default function DetailJobVacancy({ id }) {
+  const { setNamePage, token, showNotification } = useAuth();
+
+  const [vacancyDetail, setVacancyDetail] = useState(null);
+  const [selectedPosition, setSelectedPosition] = useState([]);
+  const [companyNotes, setCompanyNotes] = useState("");
 
   useEffect(() => {
-      setNamePage("Job Detail")
-  }, [])
+    setNamePage("Job Detail");
+    const fetchVacancyDetail = async () => {
+      try {
+        const response = await httpClient(
+          `http://127.0.0.1:8000/api/v1/job_vacancies/${id}`,
+          {
+            method: "GET",
+            token: token,
+          }
+        );
+
+        const data = response.data.vacancy;
+        console.log(data);
+
+        setVacancyDetail(data);
+      } catch (error) {
+        showNotification("danger", error.message);
+      }
+    };
+
+    // console.log(id);
+    fetchVacancyDetail();
+  }, []);
+
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+
+    const payload = {
+      vacancy_id: id,
+      positions: selectedPosition,
+      notes: companyNotes
+    };
+
+    console.log(payload);
+
+    try {
+      const response = await httpClient(
+        "http://127.0.0.1:8000/api/v1/applications",
+        {
+          method: "POST",
+          token: token,
+          body : payload
+          
+        }
+      );
+
+      console.log(response)
+
+      showNotification("success", "Successfully add aplications");
+    } catch (error) {
+      showNotification("error", error.message);
+    }
+
+    // console.log(payload);
+  };
+
+  const handlePositionChange = (e) => {
+    const { value, checked } = e.target;
+
+    if (checked) {
+      setSelectedPosition([...selectedPosition, value]);
+    } else {
+      setSelectedPosition(
+        selectedPosition.filter((position) => position !== value)
+      );
+    }
+
+    console.log(selectedPosition);
+  };
+
   return (
-    <div className="col-10 mx-auto mb-5">
-      <h4 className="mb-3">Description</h4>
-      <p className="text-break">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
-      </p>
+    vacancyDetail && (
+      <form className="col-10 mx-auto mb-5" onSubmit={handleSubmit}>
+        <h4 className="mb-3">Description</h4>
+        <p className="text-break">{vacancyDetail.description}</p>
 
-      <h4 className="mt-5">Select Position</h4>
-      <table className="table table-bordered table-striped table-hover">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Capacity</th>
-            <th>Application / Max</th>
-          </tr>
-        </thead>
+        <h4 className="mt-5">Select Position</h4>
+        <table className="table table-bordered table-striped table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Capacity</th>
+              <th>Application / Max</th>
+            </tr>
+          </thead>
 
-        <tbody>
-          <tr>
-            <td>
-              <input type="checkbox" className="form-check-input" />
-            </td>
+          <tbody>
+            {vacancyDetail.available_position.map((position, index) => (
+              <tr key={index}>
+                <td>
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    value={position.id}
+                    onChange={(e) => handlePositionChange(e)}
+                  />
+                </td>
 
-            <td>Desain Grafis</td>
+                <td>{position.position}</td>
 
-            <td>6/12</td>
-          </tr>
-          <tr>
-            <td>
-              <input type="checkbox" className="form-check-input" />
-            </td>
+                <td>
+                  {position.apply_capacity}/{position.capacity}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
 
-            <td>Desain Grafis</td>
+        <div className="mb-3">
+          <label className="form-label" htmlFor="notesForCompany">
+            Notes for company
+          </label>
+          <textarea
+            className="form-control"
+            style={{
+              height: "200px",
+            }}
+            placeholder="Explain why should be accepted"
+            onChange={(e) => setCompanyNotes(e.target.value)}
+          ></textarea>
+        </div>
 
-            <td>6/12</td>
-          </tr>
-        </tbody>
-      </table>
+        <div className="d-flex w-100 justify-content-end mb-3">
+          <button type="submit" className=" btn btn-primary">
+            Apply for this job
+          </button>
+        </div>
 
-      <div className="d-flex w-100 justify-content-end">
-        <button className=" btn btn-primary">Apply for this job</button>
-      </div>
-
-      <div className="mb-3">
-        <label className="form-label" htmlFor="notesForCompany">Notes for company</label>
-        <textarea className="form-control" style={{ 
-            height : '200px'
-         }}
-         placeholder="Explain why should be accepted"
-         ></textarea>
-      </div>
-
-      <div className="w-100 text-center">
-        Copyright © 2025 - Jobseeker
-      </div>
-    </div>
+        <div className="w-100 text-center">Copyright © 2025 - Jobseeker</div>
+      </form>
+    )
   );
 }

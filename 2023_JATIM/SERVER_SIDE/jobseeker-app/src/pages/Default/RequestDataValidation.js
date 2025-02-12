@@ -40,13 +40,13 @@ export default function RequestDataValidation() {
 
         e.preventDefault();
         const payload = {
-            job_category : parseInt(jobCategoryIdRef.current.value),
+            job_category_id : parseInt(jobCategoryIdRef.current.value),
             job_position :  `${jobPositionRef.current.value.split(',').map(item=> item.toLowerCase().trim())}`,
             reason_accepted : reasonAcceptedRef.current.value,
             work_experience : jobExperienceRef.current.value
         }
 
-        // console.log(payload);
+        console.log(payload);
 
         try {
             const response = await httpClient('http://127.0.0.1:8000/api/v1/validation', {

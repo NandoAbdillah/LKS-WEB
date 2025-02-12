@@ -17,7 +17,7 @@ class SocietyResource extends JsonResource
         return 
         [
             'name' => $this->name,
-            'born_id' => $this->born_id,
+            'born_date' => $this->born_date,
             'gender' => $this->gender,
             'address' => $this->address,
             'regional' => new RegionalResource($this->whenLoaded('regional')),

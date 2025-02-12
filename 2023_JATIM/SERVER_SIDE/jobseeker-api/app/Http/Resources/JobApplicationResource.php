@@ -21,6 +21,7 @@ class JobApplicationResource extends JsonResource
             'address' => $this->address,
             'description' => $this->description,
             'positions' => JobApplyPositionResource::collection($this->whenLoaded('jobApplyPositions')),
+            
         ];
     }
 }
