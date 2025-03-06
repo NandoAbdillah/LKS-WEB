@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Particle Button</title>
+    <style>
+
+        * {
+            --primary-color : #ff598c;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .particle-btn {
+            border: none;
+            background-color: var(--primary-color);
+            color: #fff;
+            border-radius: 5px;
+            padding: 16px 32px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .particle-btn::after , 
+        .particle-btn::before  {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            transform: translate(-50%, -50%) scale(0);
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            box-shadow: -30px -10px 0 0 var(--primary-color);
+        }
+
+        .particle-btn:active::after , 
+        .particle-btn:active::before {
+            animation: particleBurst 2s ease-out forwards;
+        }
+
+        @keyframes particleBurst {
+            0% {
+                transform: translate(-50%, -50%) scale(1.5);
+                opacity: 1;
+            }
+            25% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.7;
+            }
+            75% {
+                transform: translate(-50%, -50%) scale(0.5);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(0.2);
+                opacity: 0.2;
+            }
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+    <button class="particle-btn">Click Me!</button>
+    
+</body>
+</html>
