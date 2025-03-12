@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bar Chart</title>
+
+    <style>
+      body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .chart {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 80%;
+        max-width: 600px;
+      }
+
+      .row {
+        display: flex;
+        align-items: center;
+      }
+
+      .label {
+        width: 50px;
+        text-align: right;
+        margin-right: 10px;
+      }
+
+      .bar {
+        width: 0;
+        height: 30px;
+        background : darkblue;
+        transition: transform 0.5s ease;
+        transform-origin: left;
+        animation: load 2s ease forwards;
+      }
+
+      .bar:hover {
+        transform: scaleX(1.2);
+      }
+
+      @keyframes load {
+        to {
+          width: var(--bar-width);
+        }
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="chart" id="chart"></div>
+
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const chart  = document.getElementById('chart');
+
+        const startYear = 2020;
+        const endYear = 2025;
+
+        for (let year = startYear; year < endYear; year++) {
+          
+          const row = document.createElement('div');
+          row.className = 'row';
+
+          const label = document.createElement('div');
+          label.className = 'label';
+          label.textContent = year;
+
+          const bar = document.createElement('div');
+          bar.className = 'bar';
+          
+          const barWidth = Math.floor(Math.random() * 300 + 100) + 'px';
+          bar.style.setProperty('--bar-width', barWidth);
+          
+          bar.style.backgroundColor = `rgb(
+             ${Math.floor(Math.random()*255)},
+             ${Math.floor(Math.random()*255)},
+             ${Math.floor(Math.random()*255)}
+          )`;
+
+          row.appendChild(label);
+          row.appendChild(bar);
+
+          chart.appendChild(row);
+        }
+      })
+    </script>
+
+  </body>
+</html>

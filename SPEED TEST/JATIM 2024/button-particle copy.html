@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Button Particle</title>
+    <style>
+      :root {
+        --primary-color: #ff598c;
+      }
+      body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      button {
+        border: none;
+        padding: 18px 36px;
+        border-radius: 5px;
+        font-size: 14px;
+        color: white;
+        background-color: var(--primary-color);
+        cursor: pointer;
+        position: relative;
+        z-index: 2;
+      }
+
+      button:active::before,
+      button:active::after {
+        width: 12px;
+        height: 12px;
+        transform: scale(0.5);
+      }
+
+      button::before,
+      button::after {
+        content: "";
+        position: absolute;
+        top: 15px;
+        border-radius: 50%;
+        z-index: 1;
+        transform: translate(-50%, -50%);
+        background: var(--primary-color);
+        box-shadow: -15px -30px 0 0 var(--primary-color),
+          -20px -25px 0 0 var(--primary-color),
+          -50px -20px 0 0 var(--primary-color),
+          40px -15px 0 0 var(--primary-color),
+          -40px 30px 0 0 var(--primary-color),
+          -50px 0px 0 0 var(--primary-color), 40px 0px 0 0 var(--primary-color),
+          10px 40px 0 0 var(--primary-color), 20px 30px 0 0 var(--primary-color);
+          
+          transition: transform 3s ease-out;
+      }
+
+    </style>
+  </head>
+  <body>
+    <button>Click Me !</button>
+  </body>
+</html>

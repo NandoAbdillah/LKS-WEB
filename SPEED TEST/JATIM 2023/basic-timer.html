@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Digital Timer</title>
+  <style>
+    /* Styling dasar untuk tampilan timer */
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      flex-direction: column;
+    }
+    /* Tampilan angka timer */
+    #display {
+      font-size: 80px;
+      margin-bottom: 30px;
+    }
+    /* Tampilan tombol */
+    .buttons {
+      display: flex;
+      gap: 16px;
+    }
+    button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    #start-btn { background-color: #007bff; }
+    #stop-btn { background-color: #dc3545; }
+    #reset-btn { background-color: #ffc107; }
+  </style>
+</head>
+<body>
+  <!-- Elemen tampilan timer -->
+  <div id="display">000:00</div>
+  <!-- Tombol kontrol timer -->
+  <div class="buttons">
+    <button id="start-btn">Start timer</button>
+    <button id="stop-btn">Stop timer</button>
+    <button id="reset-btn">Reset timer</button>
+  </div>
+  <script>
+    // Variabel timer
+    let elapsedTime = 0;             // Waktu berjalan dalam centiseconds (1/100 detik)
+    let isRunning = false;           // Status apakah timer sedang berjalan
+    let intervalId = null;           // ID interval dari setInterval
+    const MAX_TIME = 99959;          // Batas waktu maksimum (999 detik dan 59 centiseconds)
+    const displayElement = document.getElementById("display"); // Elemen tampilan angka timer
+
+    // Fungsi untuk memperbarui tampilan timer
+    function updateDisplay() {
+      // Konversi centiseconds ke detik dan sisa centiseconds
+      let seconds = Math.floor(elapsedTime / 100);
+      let centiseconds = elapsedTime % 100;
+      // Format angka dengan angka nol di depan
+      let secondsStr = seconds.toString().padStart(3, "0");
+      let centisecondsStr = centiseconds.toString().padStart(2, "0");
+      // Update teks tampilan timer
+      displayElement.textContent = secondsStr + ":" + centisecondsStr;
+    }
+
+    // Event handler untuk memulai timer
+    document.getElementById("start-btn").onclick = () => {
+      if (!isRunning && elapsedTime < MAX_TIME) {
+        isRunning = true;
+        intervalId = setInterval(() => {
+          elapsedTime++;
+          // Jika mencapai batas waktu maksimum, hentikan timer
+          if (elapsedTime >= MAX_TIME) {
+            elapsedTime = MAX_TIME;
+            clearInterval(intervalId);
+            isRunning = false;
+          }
+          updateDisplay();
+        }, 10); // Update setiap 10 milidetik (1 centisecond)
+      }
+    };
+
+    // Event handler untuk menghentikan timer
+    document.getElementById("stop-btn").onclick = () => {
+      isRunning = false;
+      clearInterval(intervalId);
+    };
+
+    // Event handler untuk mereset timer
+    document.getElementById("reset-btn").onclick = () => {
+      isRunning = false;
+      clearInterval(intervalId);
+      elapsedTime = 0;
+      updateDisplay();
+    };
+
+    // Inisialisasi tampilan saat halaman dimuat
+    updateDisplay();
+  </script>
+</body>
+</html>

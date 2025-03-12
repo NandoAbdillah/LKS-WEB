@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas Chart</title>
+
+    <style>
+      body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      input,
+      button {
+        padding: 5px;
+      }
+
+      .form {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .container {
+        background-color: #eee;
+        padding: 20px;
+      }
+
+      canvas {
+        background-color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="form" action="">
+        <input type="text" name="label" id="label" placeholder="label" />
+        <input type="text" name="value" id="value" placeholder="value" />
+        <button id="add-btn">Add Data</button>
+      </div>
+
+      <canvas id="graph" width="700" height="400"> </canvas>
+    </div>
+
+    <script>
+      const canvas = document.getElementById("graph"),
+        ctx = canvas.getContext("2d");
+
+      let labels = ["January", "February", "March", "April", "May"];
+      let data = [10, 20, 15, 25, 30];
+      let maxValue = Math.max(...data);
+
+      const pad = 50,
+        graphH = canvas.offsetHeight - pad * 2,
+        graphW = canvas.offsetWidth - pad * 2;
+
+      function drawAxis() {
+        ctx.beginPath();
+        ctx.moveTo(pad, pad);
+        ctx.strokeStyle = "#grey";
+        ctx.lineWidth = 2;
+        ctx.lineTo(pad, canvas.offsetHeight - pad);
+        ctx.lineTo(canvas.offsetWidth - pad, canvas.offsetHeight - pad);
+        ctx.stroke();
+        ctx.closePath();
+      }
+
+      function drawLabels() {
+        ctx.beginPath();
+        ctx.font = "12px Arial";
+        ctx.textAlign = "right";
+        for (let i = 0; i <= 5; i++) {
+          const y = pad + graphH - (i * graphH) / 5,
+            num = Math.round(((i * maxValue) / 5) * 10) / 10;
+
+          ctx.fillText(num, pad - 10, y);
+          ctx.fill();
+        }
+
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.textBaseline = "top";
+        ctx.textAlign = "center";
+        for (let i = 0; i < labels.length; i++) {
+          const x = pad + (i * graphW) / Math.max(labels.length - 1, 1);
+          ctx.fillText(labels[i], x, graphH + pad + 10);
+        }
+      }
+
+      function drawLines() {
+        ctx.beginPath();
+        ctx.strokeStyle = "blue";
+        ctx.lineWidth = 2;
+        data.forEach((val, index) => {
+          const x = pad + (index * graphW) / Math.max(data.length - 1, 1);
+          const y = canvas.offsetHeight - pad - (val / maxValue) * graphH;
+
+          index ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+          ctx.stroke();
+        });
+
+        ctx.closePath();
+      }
+
+      function addData() {
+        const label = document.getElementById("label").value,
+          value = +document.getElementById("value").value;
+
+        if (label == "" || value === "" || value == null) {
+          alert("Data tidak boleh kosong");
+        } else {
+          labels.push(label);
+          data.push(value);
+
+          (maxValue = Math.max(...data)), draw();
+        }
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
+        drawAxis();
+        drawLabels();
+        drawLines();
+      }
+      draw();
+
+      document.getElementById("add-btn").onclick = addData;
+    </script>
+  </body>
+</html>

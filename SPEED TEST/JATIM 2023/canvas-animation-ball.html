@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Canvas Animation</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        canvas {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="myCanvas" width="400" height="320"></canvas>
+    
+
+    <script>
+        const canvas = document.getElementById('myCanvas');
+        const ctx =  canvas.getContext('2d');
+    
+        const radius = 10;
+        let xPosition = -10;
+
+        function drawBall(x)
+        {
+            ctx.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
+            
+            ctx.beginPath();
+            ctx.arc(x, canvas.offsetHeight /2, radius, 0, Math.PI*2);
+            ctx.fillStyle="#FFFFFF";
+            ctx.fill();
+        }
+
+        function animate()
+        {
+            drawBall(xPosition);
+
+            if(xPosition + radius === canvas.offsetWidth) {
+                xPosition = -10;
+            }
+
+            xPosition++;
+
+            requestAnimationFrame(animate);
+
+        } 
+
+
+        animate();
+    </script>
+</body>
+</html>

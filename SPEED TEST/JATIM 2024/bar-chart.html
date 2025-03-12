@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bar Chart</title>
+
+    <style>
+      body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+
+      .chart-container {
+        display: flex;
+        align-items: flex-end;
+      }
+
+      .y-axis {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 50px;
+        height: 195px;
+
+      }
+
+      .chart {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-around;
+        gap: 25px;
+        border: 1px solid black;
+        padding: 0 10px;
+
+      }
+
+      .x-axis {
+        display: flex;
+        justify-content: space-around;
+        margin : 10px 0 0 50px;
+
+      }
+
+      .bar {
+        width: 40px;
+        background-color: darkblue;
+      }
+
+      .axis-label {
+        font-size: 0.8rem;
+        font-family: sans-serif;
+      }
+
+      
+
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="chart-container" id="chart-container">
+        <div class="y-axis" id="y-axis"></div>
+        <div class="chart" id="chart"></div>
+      </div>
+
+      <div class="x-axis" id="x-axis"></div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", ()=> {
+
+        async function fetchData ()
+        {
+          try {
+            const response = await fetch('./random.php');
+            const data = await response.json();
+
+            createChart(data);
+            
+          }
+          catch (error) {
+            console.log("Error fetching", error);
+          }
+        }
+
+        function createChart(data)
+        {
+
+        const yAxis = document.getElementById('y-axis');
+        
+        const maxValue = Math.max(...data.map(item => item.value));
+        const maxLabelValue = Math.ceil(maxValue / 100) * 100;
+
+        for (let i = maxLabelValue; i >= 0; i-=100) {
+          
+          const label = document.createElement('div');
+          label.className = 'axis-label'
+          label.textContent = i;
+          yAxis.appendChild(label);
+          
+        }
+
+        const chartHeight = 200;
+        const xAxis = document.getElementById('x-axis');
+        const chart = document.getElementById('chart');
+
+        data.forEach(item => {
+           const xLabel = document.createElement('div');
+           xLabel.className =  'axis-label';
+           xLabel.textContent = item.name;
+
+           xAxis.appendChild(xLabel);
+
+           
+          const bar = document.createElement('div');
+          bar.className = 'bar';
+
+          const barHeight = (item.value / maxLabelValue) * chartHeight;
+
+          bar.style.height = barHeight + "px";
+
+          chart.appendChild(bar);
+
+        });
+
+
+        }
+
+        fetchData();
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ball Canvas</title>
+
+    <style>
+      body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      canvas {
+        background-color: green;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="400" height="200"></canvas>
+
+    <script>
+      const canvas = document.getElementById("myCanvas"),
+        ctx = canvas.getContext("2d"),
+        ballRadius = 15;
+      let x = 20,
+        y = 100,
+        dx = 0.8,
+        dy = 0,
+        stage = 1;
+
+      function drawBall() {
+        ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+        ctx.beginPath();
+        ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+        ctx.fillStyle = "white";
+        ctx.fill();
+        ctx.closePath();
+      }
+
+      function draw() {
+        if (stage === 1) {
+          x += dx;
+          if (x >= canvas.clientWidth - ballRadius) {
+            stage = 2;
+            dx = 0;
+            dy = 0.8;
+          }
+        } else if (stage === 2) {
+          y += dy;
+          if (y >= canvas.clientHeight - ballRadius) {
+            stage = 3;
+            dx = -0.8;
+            dy = 0;
+          }
+        } else if (stage === 3) {
+          x += dx;
+
+          if (x <= -ballRadius) {
+            stage = 1;
+            x = 20;
+            y = 100;
+            dx = 0.8;
+            dy = 0;
+          }
+        }
+
+        drawBall();
+
+        requestAnimationFrame(draw);
+      }
+
+      draw();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bubble Canvas</title>
+
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      canvas {
+        background-color: rgba(58, 169, 254, 0.952);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="500" height="500"> </canvas>
+    <script>
+      const canvas = document.getElementById("myCanvas");
+      const ctx = canvas.getContext("2d");
+
+      const bubbles = [];
+      let animationRunning = false;
+
+      class Bubble {
+        constructor() {
+          this.radius = Math.floor(Math.random() * 50) + 5;
+          this.y = canvas.offsetHeight;
+          this.x =
+            this.radius +
+            Math.random() * (canvas.offsetWidth - this.radius * 2);
+          this.speed = 1 + Math.random() * 2;
+
+          this.checkCollision();
+        }
+
+        checkCollision() {
+          for (let tries = 0; tries < 20; tries++) {
+            let overlaps = false;
+
+            for (let bubble of bubbles) {
+              const distance = Math.sqrt(
+                (this.x - bubble.x) ** 2 + (this.y - bubble.y) ** 2
+              );
+
+              if (distance < this.radius + bubble.radius + 5) {
+                overlaps = true;
+                break;
+              }
+
+              if (!overlaps) break;
+
+              this.x =
+                this.radius +
+                Math.random() * (canvas.offsetWidth - this.radius * 2);
+            }
+          }
+        }
+
+        move() {
+          this.y -= this.speed;
+        }
+
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fillStyle = "#FFFFFF";
+          ctx.fill();
+        }
+      }
+
+      function animate() {
+
+        ctx.clearRect(0,0, canvas.width, canvas.height);
+        for (let i = bubbles.length - 1; i >= 0; i--) {
+          if (bubbles[i].radius + bubbles[i].y < 0) {
+            bubbles.splice(i, 1);
+            continue;
+          }
+
+          bubbles[i].move();
+          bubbles[i].draw();
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+      canvas.onclick = () => {
+        for (let i = 0; i < 5; i++) {
+          bubbles.push(new Bubble());
+        }
+
+        if (!animationRunning) {
+          animationRunning = true;
+          animate();
+        }
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Transition</title>
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            position: relative;
+            text-align: center;
+            margin: 20px;
+
+        }
+
+        .card {
+            border: 1px solid yellow;
+            position: absolute;
+            cursor: pointer;
+            transition: 0.3s;
+
+        }
+
+        .card.hidden {
+            opacity: 0;
+            transform: scale(0);
+        }
+        #image-container {
+            position: relative;
+            background-size: cover;
+            margin-top: 20px;
+        }
+
+        #main-image {
+            display: block;
+            max-width: 1200px;
+            max-height: 900px;
+        }
+        
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      X : <input type="number" id="x" value="5" min="1" /> Y :
+      <input type="number" id="y" value="3" min="1" />
+
+      <button id="split-btn">Split Image</button>
+    </div>
+
+    <div id="image-container">
+      <img src="./landscape.jpg" alt="landscape" id="main-image" />
+    </div>
+
+    <script>
+        document.getElementById('split-btn').onclick = () => {
+            const x = +document.getElementById('x').value,
+                  y = +document.getElementById('y').value,
+                  container = document.getElementById('image-container'),
+                  img = document.getElementById('main-image');
+
+            img.style.visibility = 'hidden';
+            container.querySelectorAll('.card').forEach(card => card.remove());
+
+            const {width, height} = img,
+                  cardWidth = width / x,
+                  cardHeight = height / y;
+
+            for(let i =0; i < y ; i++) {
+                for(let j =0; j< x; j++) {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+
+                    Object.assign(card.style , {
+                        width : cardWidth + "px",
+                        height : cardHeight + "px",
+                        top : `${i * cardHeight}px`,
+                        left : `${j * cardWidth}px`,
+                        backgroundImage :  `url(${img.src})`,
+                        backgroundSize : `${width}px ${height}px`,
+                        backgroundPosition : `-${j * cardWidth}px -${i * cardHeight}px`
+                    });
+
+                    card.onclick = () => card.classList.add('hidden');
+
+                    container.appendChild(card);
+                }
+            }
+        }
+    </script>
+  </body>
+</html>

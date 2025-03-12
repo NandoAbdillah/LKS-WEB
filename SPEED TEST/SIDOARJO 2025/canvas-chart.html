@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas Chart</title>
+
+    <style>
+      body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .box {
+        background: #f2f2f2;
+        padding: 20px;
+      }
+
+      .form {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 15px;
+      }
+
+      input {
+        margin-right: 10px;
+        padding: 5px;
+      }
+
+      .canvas-box {
+        background: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="form">
+        <input type="text" id="label" placeholder="label" />
+        <input type="text" id="value" placeholder="value" />
+        <button id="btn">Tambah</button>
+      </div>
+
+      <div class="canvas-box">
+        <canvas id="graph" width="700" height="400"></canvas>
+      </div>
+    </div>
+
+    <script>
+      const canvas = document.getElementById("graph"),
+        ctx = canvas.getContext("2d"),
+        defaultLabels = ["January", "February", "March", "April", "May"],
+        defaultValues = [10, 20, 15, 25, 30],
+        canvasW = canvas.offsetWidth,
+        canvasH = canvas.offsetHeight,
+        pad = 50,
+        graphW = canvasW - pad * 2,
+        graphH = canvasH - pad * 2;
+
+      let labels = [...defaultLabels],
+        values = [...defaultValues];
+
+      function drawGraph() {
+
+        let maxVal = Math.max(...values);
+
+        ctx.clearRect(0, 0, canvasW, canvasH);
+        ctx.fillStyle = "#fff";
+        ctx.fillRect(0, 0, canvasW, canvasH);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.strokeStyle = "#888";
+        ctx.moveTo(pad, pad);
+        ctx.lineTo(pad, canvasH - pad);
+        ctx.lineTo(canvasW - pad, canvasH - pad);
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.font = "12px Arial";
+        ctx.fillStyle = "#000";
+        ctx.textAlign = "right";
+        ctx.textBaseline = "middle";
+        for (let i = 0; i <= 5; i++) {
+          const y = canvasH - pad - (i * graphH) / 5,
+            num = Math.round(((i * maxVal) / 5) * 10) / 10;
+          ctx.fillText(num, pad - 10, y);
+        }
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.textAlign = "center";
+        ctx.textBaseline = "top";
+        for (let i = 0; i < labels.length; i++) {
+          const x = pad + (i * graphW) / Math.max(labels.length - 1, 1);
+          ctx.fillText(labels[i], x, canvasH - pad + 10);
+        }
+        ctx.closePath();
+
+        if (values.length) {
+          ctx.beginPath();
+          ctx.strokeStyle = "blue";
+          ctx.lineWidth = 2;
+          values.forEach((value, index) => {
+            const x = pad + (index * graphW) / Math.max(labels.length - 1, 1),
+              y = canvasH - pad - (value / maxVal) * graphH;
+
+            index ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+            ctx.stroke();
+          });
+
+          ctx.closePath();
+        }
+      }
+      drawGraph();
+
+      document.getElementById("btn").onclick = () => {
+        const label = document.getElementById("label").value,
+          value = +document.getElementById("value").value;
+
+        if (!label || !value) {
+          alert("Inputan label dan value harus valid !");
+          return;
+        }
+
+        const num = parseFloat(value);
+        if (isNaN(num)) {
+          alert("Value harus berupa angka !");
+          return;
+        }
+
+        values.push(num);
+        labels.push(label);
+
+        drawGraph();
+      };
+    </script>
+  </body>
+</html>

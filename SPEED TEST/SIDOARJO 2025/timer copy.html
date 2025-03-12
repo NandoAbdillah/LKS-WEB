@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timer</title>
+
+  <style>
+     body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #eee;
+        }
+        .container {
+          background-color: #fff;
+          padding: 150px ;
+          border: 1px solid black;
+        }
+
+        .display {
+          text-align: center;
+          font-size: 80px;
+          margin-bottom: 15px;
+        }
+
+        .buttons {
+          display: flex;
+          justify-content: center;
+          gap: 10px;
+        }
+
+        button {
+          border: none;
+          padding: 8px 16px;
+          color: white;
+        }
+
+        #second {
+          color: green;
+        }
+
+        #centisecond {
+          color: red;
+        }
+
+        #start-btn {
+          background-color: green;
+        } 
+        #stop-btn {
+          background-color: yellow;
+          color: black;
+        }
+        #reset-btn {
+          background-color: red;
+        }
+
+        
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="display">
+      <span id="second">000</span>
+      <span>:</span>
+      <span id="centisecond">00</span>
+    </div>
+
+    <div class="buttons">
+      <button id="start-btn">Start Timer</button><button id="stop-btn">Stop Timer</button><button id="reset-btn">Reset Timer</button>
+    </div>
+  </div>
+
+
+  <script>  
+
+    const second = document.getElementById('second'),
+          centisecond = document.getElementById('centisecond'),
+          MAX_TIME = 99959;
+
+    let elapsedTime = 0,
+        intervalId = null,
+        isRunning = false;
+
+    const updateDisplay = () => {
+
+      const seconds =  Math.floor(elapsedTime / 100);
+      const centiseconds = elapsedTime % 100;
+
+      second.textContent = seconds.toString().padStart(3 , "0");
+      centisecond.textContent = centiseconds.toString().padStart(2, "0");
+
+
+    }
+
+    document.getElementById('start-btn').onclick = () => {
+      if(!isRunning && elapsedTime < MAX_TIME) {
+
+        intervalId = setInterval(()=>{
+          isRunning = true;
+           elapsedTime++;
+
+           if(elapsedTime >= MAX_TIME) {
+            isRunning = false;
+            clearInterval(intervalId);
+           }
+
+           updateDisplay();
+        }, 10);
+      }
+    }
+
+    document.getElementById('stop-btn').onclick = () => {
+      isRunning = false;
+      clearInterval(intervalId);
+    }
+
+
+    document.getElementById('reset-btn').onclick = () => {
+      isRunning = false;
+      clearInterval(intervalId);
+      elapsedTime = 0;
+      updateDisplay();
+    }
+  </script>
+  
+</body>
+</html>

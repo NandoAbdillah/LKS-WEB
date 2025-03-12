@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Line Chart Canvas</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .canvas-container {
+      position: relative;
+    }
+    canvas {
+      border: 1px solid #f0f0f0;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="canvas-container">
+    <h2>C1. Line Chart</h2>
+    <canvas id="lineChart" width="600" height="400"></canvas>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', init);
+
+    function init() {
+      const canvas = document.getElementById('lineChart');
+      const ctx = canvas.getContext('2d');
+
+      // Data chart
+      const data = [
+        { tanggal: 1, jumlah: 13 },
+        { tanggal: 2, jumlah: 20 },
+        { tanggal: 3, jumlah: 69 },
+        { tanggal: 4, jumlah: 38 },
+        { tanggal: 5, jumlah: 58 },
+        { tanggal: 6, jumlah: 20 },
+        { tanggal: 7, jumlah: 48 },
+        { tanggal: 8, jumlah: 28 }
+      ];
+
+      const padding = 50;
+      const width = canvas.width;
+      const height = canvas.height;
+      const yMin = Math.min(...data.map(d => d.jumlah));
+      const yMax = Math.max(...data.map(d => d.jumlah));
+      const xScale = (width - padding * 2) / (data.length - 1);
+      const yScale = (height - padding * 2) / (yMax - yMin);
+
+      // Gambar sumbu, label, tick, dan garis chart
+      drawAxis(ctx, width, height, padding);
+      drawLabels(ctx, width, height, padding);
+      drawTicks(ctx, data, width, height, padding, xScale, yScale, yMin);
+      drawLine(ctx, data, padding, xScale, yScale, yMin, height);
+    }
+
+    // Fungsi untuk menggambar sumbu X dan Y
+    function drawAxis(ctx, width, height, padding) {
+      ctx.beginPath();
+      ctx.strokeStyle = 'black';
+      ctx.lineWidth = 1;
+      // Sumbu Y
+      ctx.moveTo(padding, padding);
+      ctx.lineTo(padding, height - padding);
+      // Sumbu X
+      ctx.moveTo(padding, height - padding);
+      ctx.lineTo(width - padding, height - padding);
+      ctx.stroke();
+    }
+
+    // Fungsi untuk menggambar label sumbu
+    function drawLabels(ctx, width, height, padding) {
+      ctx.fillStyle = 'black';
+      ctx.font = '12px Arial';
+      ctx.fillText('Jumlah', padding - 35, padding - 10); // Label Y
+      ctx.fillText('Tanggal', width - padding, height - padding + 35); // Label X
+    }
+
+    // Fungsi untuk menggambar tick dan nilainya di sumbu
+    function drawTicks(ctx, data, width, height, padding, xScale, yScale, yMin) {
+      // Tick untuk sumbu Y
+      const yTicks = [13, 27, 41, 55, 70];
+      yTicks.forEach(tick => {
+        const y = height - padding - (tick - yMin) * yScale;
+        ctx.fillText(tick, padding - 25, y + 5);
+        ctx.beginPath();
+        ctx.moveTo(padding - 3, y);
+        ctx.lineTo(padding, y);
+        ctx.stroke();
+      });
+
+      // Tick untuk sumbu X
+      data.forEach((point, i) => {
+        const x = padding + i * xScale;
+        ctx.fillText(point.tanggal, x - 5, height - padding + 20);
+        ctx.beginPath();
+        ctx.moveTo(x, height - padding);
+        ctx.lineTo(x, height - padding + 3);
+        ctx.stroke();
+      });
+    }
+
+    // Fungsi untuk menggambar garis chart berdasarkan data
+    function drawLine(ctx, data, padding, xScale, yScale, yMin, height) {
+      ctx.beginPath();
+      ctx.strokeStyle = 'red';
+      ctx.lineWidth = 2;
+      data.forEach((point, i) => {
+        const x = padding + i * xScale;
+        const y = height - padding - (point.jumlah - yMin) * yScale;
+        if (i === 0) {
+          ctx.moveTo(x, y);
+        } else {
+          ctx.lineTo(x, y);
+        }
+      });
+      ctx.stroke();
+    }
+  </script>
+</body>
+</html>

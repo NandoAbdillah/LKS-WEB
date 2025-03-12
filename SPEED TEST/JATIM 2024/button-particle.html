@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Button Particle</title>
+    <style>
+      :root {
+        --primary-color: #ff598c;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+      }
+
+      .particle-btn {
+        border: none;
+        border-radius: 5px;
+        background: var(--primary-color);
+        color: #fff;
+        padding: 16px 32px;
+        position: relative;
+      }
+
+      .particle-btn::before,
+      .particle-btn::after {
+        content: "";
+        position: absolute;
+        top: 30%;
+        left: 30%;
+        width: 10px;
+        height: 10px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        box-shadow: -40px -10px 0 0 var(--primary-color),
+          -10px -15px 0 0 var(--primary-color),
+          15px -10px 0 0 var(--primary-color),
+          50px -15px 0 0 var(--primary-color),
+          -30px 12px 0 0 var(--primary-color),
+          40px 30px 0 0 var(--primary-color), 10px 25px 0 0 var(--primary-color),
+          -15px 20px 0 0 var(--primary-color),
+          -50px 25px 0 0 var(--primary-color),
+          70px 10px 0 0 var(--primary-color);
+
+        cursor: pointer;
+      }
+
+      .particle-btn:active::before,
+      .particle-btn:active::after {
+        animation: particleBurst 1s ease-out forwards;
+      }
+
+      @keyframes particleBurst {
+        0% {
+          transform: translate(-50%, -50%) scale(1.5);
+          opacity: 1;
+        }
+        25% {
+          transform: translate(-50%, -50%) scale(1.2);
+          opacity: 1;
+        }
+
+        50% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 0.7;
+        }
+
+        75% {
+          transform: translate(-50%, -50%) scale(0.5);
+          opacity: 0.5;
+        }
+
+        100% {
+          transform: translate(-50%, -50%) scale(0.2);
+          opacity: 0.2;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <button class="particle-btn">Click Me !</button>
+  </body>
+</html>

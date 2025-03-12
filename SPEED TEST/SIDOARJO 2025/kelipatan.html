@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Kelipatan Statis dengan JavaScript</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        /* margin: 20px auto; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+
+      }
+
+      .container {
+        background-color: #f0f0f0;
+        padding: 15px;
+        min-width: 600px;
+      }
+
+      form {
+        margin-bottom: 20px;
+      }
+
+      label {
+        margin-right: 10px;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      th,
+      td {
+        border: 1px solid #333;
+        padding: 8px;
+        text-align: center;
+      }
+      
+
+      th {
+        background: #f2f2f2;
+      }
+      /* Kolom kedua diberi warna hijau */
+      tbody tr td:nth-child(2) {
+        background: #c8f0c8;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Form statis, tidak ada logika pengolahan data -->
+      <form action="#" method="get">
+        <label for="kelipatan">Masukkan Kelipatan:</label>
+        <input type="text" name="kelipatan" id="kelipatan" />
+        <button type="submit">Kirim</button>
+      </form>
+
+      <!-- Judul statis -->
+      <h2>Kelipatan dari 1</h2>
+
+      <!-- Tabel dengan thead, tbody akan diisi oleh JavaScript -->
+      <table id="tableKelipatan">
+        <thead>
+          <tr>
+            <th>Angka</th>
+            <th>Kelipatan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Baris akan ditambahkan secara otomatis oleh JavaScript -->
+        </tbody>
+      </table>
+    </div>
+    <script>
+      // Setelah halaman di-load, tambahkan baris tabel secara statis (1-10)
+      document.addEventListener("DOMContentLoaded", () => {
+        const tBody = document.querySelector("#tableKelipatan tbody");
+
+        for (let i = 1; i <= 10; i++) {
+          const row = document.createElement("tr");
+
+          const tdAngka = document.createElement("td");
+          tdAngka.textContent = i;
+
+          const tdKelipatan = document.createElement("td");
+          tdKelipatan.textContent = i + " (kelipatan dari 1)";
+
+          row.appendChild(tdAngka);
+          row.appendChild(tdKelipatan);
+          tBody.appendChild(row);
+        }
+      });
+    </script>
+  </body>
+</html>

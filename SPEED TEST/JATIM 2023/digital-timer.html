@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Digital Timer</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        flex-direction: column;
+      }
+      .timer-container {
+        display: flex;
+        margin-bottom: 30px;
+        align-items: center;
+      }
+      .digit {
+        position: relative;
+        width: 70px;
+        height: 120px;
+        margin: 0 5px;
+        display: inline-block;
+      }
+      .segment {
+        position: absolute;
+        background-color: #fee;
+        border-radius: 5px;
+      }
+      .segment.active {
+        background-color: #e74c3c;
+      }
+      .segment-a {
+        top: 0;
+        left: 10px;
+        width: 50px;
+        height: 10px;
+      }
+      .segment-g {
+        top: 55px;
+        left: 10px;
+        width: 50px;
+        height: 10px;
+      }
+      .segment-d {
+        bottom: 0;
+        left: 10px;
+        width: 50px;
+        height: 10px;
+      }
+      .segment-f {
+        top: 10px;
+        left: 0;
+        width: 10px;
+        height: 45px;
+      }
+      .segment-b {
+        top: 10px;
+        right: 0;
+        width: 10px;
+        height: 45px;
+      }
+      .segment-e {
+        bottom: 10px;
+        left: 0;
+        width: 10px;
+        height: 45px;
+      }
+      .segment-c {
+        bottom: 10px;
+        right: 0;
+        width: 10px;
+        height: 45px;
+      }
+      .colon {
+        position: relative;
+        width: 10px;
+        height: 120px;
+        margin: 0 10px;
+      }
+      .colon-dot {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background-color: #e74c3c;
+        border-radius: 50%;
+      }
+      .colon-dot-top {
+        top: 35%;
+      }
+      .colon-dot-bottom {
+        top: 55%;
+      }
+      .buttons {
+        display: flex;
+        gap: 16px;
+      }
+      button {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        color: #fff;
+        cursor: pointer;
+        font-size: 14px;
+      }
+      #start-btn {
+        background-color: #007bff;
+      }
+      #stop-btn {
+        background-color: #dc3545;
+      }
+      #reset-btn {
+        background-color: #ffc107;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="timer-container">
+      <div id="digit1" class="digit">
+        <div class="segment segment-a"></div>
+        <div class="segment segment-b"></div>
+        <div class="segment segment-c"></div>
+        <div class="segment segment-d"></div>
+        <div class="segment segment-e"></div>
+        <div class="segment segment-f"></div>
+        <div class="segment segment-g"></div>
+      </div>
+      <div id="digit2" class="digit">
+        <div class="segment segment-a"></div>
+        <div class="segment segment-b"></div>
+        <div class="segment segment-c"></div>
+        <div class="segment segment-d"></div>
+        <div class="segment segment-e"></div>
+        <div class="segment segment-f"></div>
+        <div class="segment segment-g"></div>
+      </div>
+      <div id="digit3" class="digit">
+        <div class="segment segment-a"></div>
+        <div class="segment segment-b"></div>
+        <div class="segment segment-c"></div>
+        <div class="segment segment-d"></div>
+        <div class="segment segment-e"></div>
+        <div class="segment segment-f"></div>
+        <div class="segment segment-g"></div>
+      </div>
+      <div class="colon">
+        <div class="colon-dot colon-dot-top"></div>
+        <div class="colon-dot colon-dot-bottom"></div>
+      </div>
+      <div id="digit4" class="digit">
+        <div class="segment segment-a"></div>
+        <div class="segment segment-b"></div>
+        <div class="segment segment-c"></div>
+        <div class="segment segment-d"></div>
+        <div class="segment segment-e"></div>
+        <div class="segment segment-f"></div>
+        <div class="segment segment-g"></div>
+      </div>
+      <div id="digit5" class="digit">
+        <div class="segment segment-a"></div>
+        <div class="segment segment-b"></div>
+        <div class="segment segment-c"></div>
+        <div class="segment segment-d"></div>
+        <div class="segment segment-e"></div>
+        <div class="segment segment-f"></div>
+        <div class="segment segment-g"></div>
+      </div>
+    </div>
+    <div class="buttons">
+      <button id="start-btn">Start timer</button
+      ><button id="stop-btn">Stop timer</button
+      ><button id="reset-btn">Reset timer</button>
+    </div>
+    <script>
+      let time = 0,
+        isRunning = false,
+        interval = null,
+        MAX_TIME = 99959,
+        startBtn = document.getElementById("start-btn"),
+        stopBtn = document.getElementById("stop-btn"),
+        resetBtn = document.getElementById("reset-btn"),
+        digitPatterns = [
+          [1, 1, 1, 1, 1, 1, 0],
+          [0, 1, 1, 0, 0, 0, 0],
+          [1, 1, 0, 1, 1, 0, 1],
+          [1, 1, 1, 1, 0, 0, 1],
+          [0, 1, 1, 0, 0, 1, 1],
+          [1, 0, 1, 1, 0, 1, 1],
+          [1, 0, 1, 1, 1, 1, 1],
+          [1, 1, 1, 0, 0, 0, 0],
+          [1, 1, 1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 0, 1, 1],
+        ];
+      function updateDisplay() {
+        let s = Math.floor(time / 100),
+          cs = time % 100,
+          sStr = s.toString().padStart(3, "0"),
+          cStr = cs.toString().padStart(2, "0");
+        updateDigit("digit1", +sStr[0]);
+        updateDigit("digit2", +sStr[1]);
+        updateDigit("digit3", +sStr[2]);
+        updateDigit("digit4", +cStr[0]);
+        updateDigit("digit5", +cStr[1]);
+      }
+      function updateDigit(id, v) {
+        let d = document.getElementById(id),
+          segs = d.querySelectorAll(".segment"),
+          p = digitPatterns[v];
+        for (let i = 0; i < segs.length; i++) {
+          p[i] === 1
+            ? segs[i].classList.add("active")
+            : segs[i].classList.remove("active");
+        }
+      }
+      function startTimer() {
+        if (!isRunning && time < MAX_TIME) {
+          isRunning = true;
+          interval = setInterval(() => {
+            time++;
+            if (time >= MAX_TIME) {
+              time = MAX_TIME;
+              stopTimer();
+            }
+            updateDisplay();
+          }, 10);
+        }
+      }
+      function stopTimer() {
+        isRunning = false;
+        clearInterval(interval);
+      }
+      function resetTimer() {
+        stopTimer();
+        time = 0;
+        updateDisplay();
+      }
+      startBtn.addEventListener("click", startTimer);
+      stopBtn.addEventListener("click", stopTimer);
+      resetBtn.addEventListener("click", resetTimer);
+      updateDisplay();
+    </script>
+  </body>
+</html>

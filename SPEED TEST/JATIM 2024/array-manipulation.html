@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Array Manipulation</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    input {
+      margin-bottom: 20px;
+      padding: 10px;
+      font-size: 16px;
+      width: 200px;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    a {
+      text-decoration: none;
+      color: white;
+      background-color: #007BFF;
+      padding: 15px 30px;
+      border-radius: 5px;
+      font-size: 18px;
+    }
+    a:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <!-- Input untuk memasukkan faktor -->
+  <input name="Factor" type="number" id="factor" placeholder="Enter a factor" />
+  <!-- Link untuk navigasi ke halaman PHP -->
+  <a id="click" href="#">Go to Array Manipulation</a>
+
+  <script>
+    // Ambil elemen input dan link
+    const factorInput = document.getElementById('factor');
+    const link = document.getElementById('click');
+
+    // Update href pada link saat nilai input berubah
+    factorInput.addEventListener('input', () => {
+      const factor = factorInput.value; // Ambil nilai input
+      if (factor && factor > 0) {
+        // Set href dengan parameter factor
+        link.href = `http://localhost/lks2025/factor/index.php?factor=${factor}`;
+      } else {
+        // Reset href jika input kosong atau tidak valid
+        link.href = "#";
+      }
+    });
+  </script>
+</body>
+</html>
