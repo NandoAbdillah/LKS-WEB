@@ -1,0 +1,9 @@
+.card-login {
+    width: 60vw;
+}
+
+@media screen and (max-width: 768px) {
+    .card-login {
+        width: 90vw;
+    }
+}

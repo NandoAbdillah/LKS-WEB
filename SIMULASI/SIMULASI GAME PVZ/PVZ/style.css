@@ -1,0 +1,281 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #471414;
+  --primary-dark: #2b1010;
+  --primary-light: #824a4a;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-family: Arial, sans-serif;
+}
+.screen {
+  position: relative;
+  width: 0;
+  height: 0;
+  display: none;
+  overflow: hidden;
+}
+
+.screen.active {
+  display: block;
+  width: 1000px;
+  height: 600px;
+  background-color: #fff;
+  box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.5);
+}
+
+#home {
+  display: flex;
+  background: var(--primary-color);
+}
+
+.main {
+  flex: 1;
+  margin: auto 20px;
+}
+
+#instruction {
+  display: none;
+}
+
+.game-logo {
+  display: block;
+  margin: 15px auto;
+  max-width: 350px;
+  text-align: center;
+}
+
+.form {
+  display: block;
+  margin: 25px auto;
+  max-width: 800px;
+  text-align: center;
+}
+
+.input-group {
+  display: block;
+  margin: 10px auto;
+}
+
+.input-group input,
+.input-group select {
+  padding: 8px 16px;
+  min-width: 300px;
+  border-radius: 5px;
+  background-color: var(--primary-dark);
+  border: 3px solid var(--primary-light);
+  color: white;
+}
+
+button {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.disable {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#btn-play {
+  background: green;
+  color: white;
+}
+
+#btn-play img {
+  width: 25px;
+  height: 15px;
+  margin: auto 5px;
+}
+
+#btn-instruction {
+  background: yellow;
+  color: var(--primary-dark);
+}
+
+#instruction.active {
+  display: block;
+  flex: 1;
+  position: relative;
+  padding: 50px;
+  border-radius: 15px;
+  background: var(--primary-dark);
+  width: 500px;
+  margin: 25px 25px 25px 0;
+  color: white;
+}
+
+#instruction h2 {
+  font-weight: 900;
+}
+
+#instruction ol {
+  margin: 15px 0 0 30px;
+}
+
+#instruction li {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.close-instr {
+  position: absolute;
+  top: 50px;
+  right: 55px;
+  border-radius: 8px;
+  background: red;
+  font-weight: 900;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+#countdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 200px;
+  background: var(--primary-light);
+  color: white;
+}
+
+#gameplay {
+  display: flex;
+}
+
+canvas {
+    margin-top: 20px;
+}
+
+.gameplay-container {
+  background: url("./media/Sprites/General/Background.jpg");
+  background-repeat: no-repeat;
+  background-size: 800px 600px;
+  width: 800px;
+  height: 600px;
+  padding: 1px;
+}
+
+.gameplay-dashboard {
+  margin: 15px 0 0 110px;
+  display: flex;
+}
+
+.sun-amount {
+  width: 70px;
+  height: 80px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  font-weight: 900;
+  border: 2px solid black;
+}
+
+.player-info {
+  margin: 10px 0 0 50px;
+  font-weight: 600;
+  color: white;
+}
+
+.shovel-container {
+  margin: 0 0 0 30px;
+}
+
+#shovel {
+  width: 60px;
+  height: 60px;
+}
+
+.gameplay-leaderboard {
+  background: var(--primary-color);
+  flex: 1;
+  color: white;
+  padding: 30px 15px;
+  text-align: center;
+}
+
+.gameplay-leaderboard h3 {
+  font-weight: 900;
+}
+
+#sortBy {
+  padding: 5px 25px;
+  border-radius: 5px;
+  margin: 15px 0;
+}
+
+.leaders {
+  margin-top: 10px;
+
+}
+.leaders .detail {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom:  20px;
+}
+
+.leaders .detail p {
+  font-style: italic;
+}
+
+.leaders .detail button {
+  border-radius: 0;
+  background: yellow;
+  columns: var(--primary-color);
+  font-style: italic;
+  padding: 3px;
+  width: 50px;
+  height: 30px;
+}
+
+.popover {
+  display: none;
+}
+
+.popover.active {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background: var(--primary-color);
+  
+}
+
+.popover .dialog {
+ background: black;
+ border: 2px solid white;
+ border-radius: 15px;
+ padding: 40px 80px;
+ text-align: center;
+ color:  white  ;
+}
+
+.dialog h2 , .dialog p  {
+   margin: 10px;
+}
+
+.dialog .buttons {
+    margin-top: 25px;
+    display: flex;
+    gap: 50px;
+}
+
+.dialog .buttons  button{
+    color:  var(--primary-color);
+}

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shooter Game</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="game-container">
+      <!-- Layout Utama untuk meamasukkan inputan dan memilih kategori -->
+      <div id="home" class="screen active">
+        <div class="main">
+          <img src="./Sprites/shooter.png" alt="" class="game-logo" />
+
+          <div class="form">
+            <div class="input-group">
+              <input
+                type="text"
+                name="username"
+                id="input-username"
+                placeholder="Input Username"
+              />
+            </div>
+
+            <div class="input-group">
+              <select name="level" id="level">
+                <option value="" selected disabled>Select Level</option>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+              </select>
+            </div>
+
+            <div class="input-group-choose">
+              <div class="gun">
+                <img src="./Sprites/gun1.png" alt="gun1" />
+                <input type="radio" name="gun" id="gun1" value="gun1" />
+              </div>
+              <div class="gun">
+                <img src="./Sprites/gun2.png" alt="gun2" />
+                <input type="radio" name="gun" id="gun2" value="gun2" />
+              </div>
+            </div>
+
+            <div class="input-group-choose">
+              <div class="target">
+                <img src="./Sprites/target1.png" alt="target1" />
+                <input
+                  type="radio"
+                  name="target"
+                  id="target1"
+                  value="target1"
+                />
+              </div>
+              <div class="target">
+                <img src="./Sprites/target2.png" alt="target2" />
+                <input
+                  type="radio"
+                  name="target"
+                  id="target2"
+                  value="target2"
+                />
+              </div>
+              <div class="target">
+                <img src="./Sprites/target3.png" alt="target3" />
+                <input
+                  type="radio"
+                  name="target"
+                  id="target3"
+                  value="target3"
+                />
+              </div>
+            </div>
+
+            <div class="buttons">
+              <button class="disable" id="btn-play">Play Game</button>
+              <button id="btn-instruction">Instruction</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="instruction">
+          <div class="close-instr">X</div>
+          <h2>How to play game</h2>
+          <ol>
+            <li>Input Username</li>
+            <li>Point the pointer at the target</li>
+            <li>Click the shoot</li>
+            <li>Get as many points as possible</li>
+            <li>Enjoy</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Layout Countdown ketika game dimulai -->
+      <div id="countdown" class="screen">
+        <h1 id="count">3</h1>
+      </div>
+
+      <!-- Layout ketika gameplay di mulai -->
+      <div id="gameplay" class="screen ">
+        <div class="gameplay-container">
+          <div class="gameplay-details">
+            <span id="player-name">Player Name</span>
+            <span id="player-score">Score</span>
+            <span id="player-time">Time : 00.22</span>
+          </div>
+          <canvas id="gameplay-canvas" width="795" height="550"></canvas>
+        </div>
+
+        <div class="gameplay-leaderboard">
+          <h2>Leaderboard</h2>
+          <select name="sort-leaderboard" id="sort-leaderboard">
+            <option value="score">Sort by Score</option>
+            <option value="name">Sort by Name</option>
+          </select>
+
+          <!-- <div class="leaders">
+            <div class="detail">
+              <div class="info">
+                <h5>Nando Abdillah</h5>
+                <p>Score : 44</p>
+              </div>
+              <button>Detail</button>
+            </div>
+          </div> -->
+        </div>
+
+
+      <!-- Layout ketika game di jeda -->
+
+        <div id="pause" class="popover">
+          <div class="dialog">
+            <h2>Game Paused</h2>
+            <p class="paused-player">Player Name : Your Name</p>
+
+            <div class="buttons">
+              <button id="continue">Continue</button>
+              <button class="restart">Restart</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Layout ketika user kalah -->
+        <div id="gameover" class="popover">
+          <div class="dialog">
+            <h2>Game Over</h2>
+            <p class="gameover-player">Player Name : Your Name</p>
+            <p class="gameover-score">Score : 0</p>
+
+            <div class="buttons">
+              <button id="save">Save</button>
+              <button class="restart">Restart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

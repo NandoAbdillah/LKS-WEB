@@ -1,0 +1,303 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #20e4e4;
+  --primary-dark: #17a0e9;
+  --sand-color: #d2ab4a;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  font-family: Poppins;
+}
+
+.screen {
+  display: none;
+}
+
+.screen.active {
+  position: relative;
+  display: block;
+  width: 1000px;
+  height: 600px;
+  background: #fff;
+  box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.5);
+}
+
+#home {
+  background: url("./media/Background/Menu\ Utama.png");
+  background-size: 1000px 600px;
+}
+
+#home .buttons img {
+  width: 200px;
+  height: 50px;
+  display: block;
+  cursor: pointer;
+}
+
+#home .buttons {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#home .settings {
+  position: absolute;
+  left: 10px;
+  bottom: 0;
+}
+
+#home .settings img {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.profile {
+  display: none;
+}
+
+.profile.active {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  text-align: center;
+}
+
+.profile.active + .overlay {
+  background: rgba(0, 0, 0, 0.7);
+  position: absolute; /* Changed from fixed to match context */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.profile .card {
+  border-radius: 15px;
+}
+
+.profile .card.title {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+.profile #btn-back {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 50px;
+  height: 50px;
+}
+
+.profile .card.title {
+  position: relative;
+  width: 300px;
+  margin: 0 auto;
+  margin-bottom: -10px;
+  z-index: 2;
+}
+
+.profile .card.body {
+  position: relative;
+  background: #fff;
+  padding: 20px;
+  width: 600px;
+  border: 2px solid var(--primary-color);
+  z-index: 1;
+}
+
+.profile .avatar img {
+  width: 100px;
+  height: 100px;
+  border: 3px solid var(--primary-dark);
+  border-radius: 50%;
+}
+
+.profile .avatar input {
+  margin: 25px auto;
+  display: block;
+  font-size: 24px;
+  text-align: center;
+  border: 1px solid var(--primary-dark);
+  border-radius: 5px;
+  color: var(--primary-color);
+}
+
+.profile-detail {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.profile-detail .detail {
+  display: flex;
+  justify-content: center;
+}
+
+.achievements img {
+  width: 40px;
+  height: 70px;
+  margin-right: 5px;
+}
+
+.profile-detail h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+#level {
+  background: url("./media/Background/Map.png");
+  background-size: 1000px 600px;
+  padding: 1px;
+}
+
+#level .lv {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.lv.disabled {
+  filter: grayscale(100%);
+}
+
+.navigation {
+  position: absolute;
+  z-index: 2;
+  margin: 20px 20px;
+  /* margin-top: 50px; */
+}
+.nav-btn {
+  width: 50px;
+  height: 50px;
+  cursor: pointer !important;
+  z-index: 1000;
+}
+
+.lv-header {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  padding: 5px 100px;
+  color: var(--primary-dark);
+  border-radius: 15px;
+}
+.lv-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.lv:nth-child(1) {
+  left: 10%;
+  bottom: 30%;
+}
+
+.lv:nth-child(2) {
+  left: 19%;
+  top: 30%;
+}
+
+.lv:nth-child(3) {
+  left: 42%;
+  top: 42%;
+}
+.lv:nth-child(4) {
+  right: 15%;
+  top: 40%;
+}
+
+.lv:nth-child(5) {
+  right: 8%;
+  bottom: 20%;
+}
+
+#gameplay {
+  background: url("./media//Background/Background\ Game\ Play.jpg");
+  background-size: 1000px 600px;
+}
+
+.gameplay-card {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 250px;
+  background: url("./media/Asset Lainya/Bar Kartu.png");
+  background-size: 250px 600px;
+}
+
+canvas {
+  position: absolute;
+  left: 40px;
+  bottom: 20px;
+  /* border: 2px solid yellow; */
+}
+
+.card-stack {
+  margin: 20px 0 0 30px;
+  display: flex;
+  position: relative;
+}
+
+.gameplay-card img {
+  width: 80px;
+  height: 120px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-reveal {
+  margin: 20px 0 0 30px;
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-stack img:not(:last-child) {
+  margin-right: -20px;
+  z-index: 1;
+}
+.card-stack img:first-child {
+  z-index: 2;
+}
+
+.card-stack img:hover {
+  transform: translateY(-15px);
+  transition: transform 0.3s ease;
+}
+
+.gameplay-card .navigation img {
+  width: 50px;
+  height: 50px;
+  box-shadow: none;
+}
+
+.gameplay-card .navigation {
+  left: 50px !important;
+}

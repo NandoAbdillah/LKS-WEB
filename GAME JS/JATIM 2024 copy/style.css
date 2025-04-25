@@ -1,0 +1,266 @@
+/* Pengayaan Umum */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgba(0, 0, 0, 0.5);
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.screen {
+  position: relative;
+  width: 0;
+  height: 0;
+  display: none;
+  overflow: hidden;
+}
+
+.screen.active {
+  display: block;
+  width: 1000px;
+  height: 600px;
+  /* border: 1px solid black; */
+  box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, 0.5);
+  background: white;
+}
+
+/* =================== Halaman Utama ================== */
+.game-logo {
+  display: block;
+  margin: 15px auto;
+  max-width: 150px;
+}
+
+.form {
+  display: block;
+  margin: 0 auto;
+  max-width: 800px;
+  /* border: 1px solid black; */
+  text-align: center;
+}
+
+.input-group,
+.input-group-choose {
+  display: block;
+  margin: 10px auto;
+}
+
+.input-group-choose {
+  margin: 25px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.input-group input,
+.input-group select {
+  padding: 6px 12px;
+  min-width: 300px;
+  border-radius: 5px;
+  border: 3px solid #ddd;
+  background-color: #eee;
+  color: black;
+}
+
+.input-group-choose img {
+  display: block;
+  width: 85px;
+  height: 85px;
+  margin-bottom: 5px;
+}
+
+button {
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  color: white;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+#btn-play {
+  background: green;
+}
+#btn-instruction {
+  background: brown;
+}
+
+#home {
+  display: flex;
+}
+
+.disable {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.main {
+  flex: 1;
+}
+
+.instruction {
+  display: none;
+}
+
+.instruction.active {
+  flex: 1;
+  display: block;
+  background: #1f1e1e;
+  width: 500px;
+  margin: 25px 25px 25px 0;
+  border-radius: 15px;
+  color: white;
+  position: relative;
+  padding: 50px;
+}
+
+.instruction h2 {
+  font-weight: 900;
+}
+
+.instruction ol {
+  margin-top: 15px;
+  padding-left: 30px;
+}
+
+.instruction li {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.close-instr {
+  position: absolute;
+  top: 55px;
+  right: 55px;
+  background: red;
+  color: white;
+  font-weight: 1000;
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* ======================== Halaman Countdown ===================== */
+#countdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+  background: #1f1e1e;
+  color: white;
+
+}
+/* ====================== Halaman Gameplay ========================= */
+#gameplay {
+  display: flex;
+}
+
+.gameplay-container {
+  border: 1px solid black;
+  width: 800px;
+  background: url("./Sprites/background.jpg");
+  background-size: 800px 600px;
+  background-repeat: no-repeat;
+}
+
+.gameplay-details {
+  display: flex;
+  justify-content: space-around;
+  background: hsla(0, 2%, 31%, 0.282);
+  color: white;
+  font-weight: 900;
+  padding: 8px;
+}
+
+.gameplay-leaderboard {
+  background: #1f1e1e;
+  width: 200px;
+  color: white;
+  padding: 5px;
+  text-align: center;
+}
+
+.gameplay-leaderboard h2 {
+  font-weight: 900;
+  margin-top: 10px;
+}
+
+.gameplay-leaderboard select {
+  width: 150px;
+  padding: 5px;
+  margin: 10px 0;
+}
+
+.gameplay-leaderboard .leaders {
+  margin: 20px 10px;
+}
+
+.gameplay-leaderboard .detail {
+  text-align: left;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.gameplay-leaderboard button {
+  padding: 3px !important;
+  background: yellow;
+  color: black;
+}
+
+canvas {
+  border: 3px solid red;
+  /* Kustom Cursor */
+  /* 16 16 adalah hotspotnya dibagi berdasarkan width dan height gambar cursor */
+  cursor: url("./Sprites/pointer.png") 26 26, auto;
+}
+
+/* ====================== Halaman Pause ======================== */
+
+.popover {
+  display: none;
+}
+
+.popover.active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width:  100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.dialog {
+  background: black;
+  border: 1px solid white;
+  border-radius: 8px;
+  padding: 50px;
+  color: white;
+  text-align: center;
+}
+
+.dialog h2 {
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+.dialog p {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.dialog button {
+  color: black;
+  margin: 10px 15px;
+}

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>World Head Football</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="game-container">
+      <div id="home" class="screen">
+        <div class="overlay"></div>
+        <h2 class="greetings">Welcome to World Head Football !</h2>
+
+        <div class="slide">
+          <div class="input-player">
+            <div class="character">
+              <img
+                src="./Sprites/Characters/Character 02 - England/Idle/Idle_000.png"
+                alt=""
+                srcset=""
+              />
+              <h2>Player 1</h2>
+            </div>
+
+            <div class="form">
+              <div class="input-group">
+                <input
+                  type="text"
+                  id="input-username-1"
+                  placeholder="input username"
+                  required
+                />
+              </div>
+
+              <div class="input-group">
+                <input
+                  type="text"
+                  id="input-country-1"
+                  readonly
+                  required
+                  placeholder="click the flags"
+                />
+              </div>
+
+              <div class="input-group">
+                <button id="btn-save-1" class="disabled">Save</button>
+              </div>
+            </div>
+          </div>
+          <div class="input-player hidden">
+            <div class="form">
+              <div class="input-group">
+                <input
+                  type="text"
+                  id="input-username-2"
+                  placeholder="input username"
+                />
+              </div>
+              <div class="input-group">
+                <input
+                  type="text"
+                  id="input-country-2"
+                  readonly
+                  required
+                  placeholder="click the flags"
+                />
+              </div>
+              <div class="input-group">
+                <button id="btn-save-2" class="disabled">Save</button>
+              </div>
+            </div>
+
+            <div class="character">
+              <img
+                src="./Sprites/Characters/Character 05 - Netherlands/Idle/Idle_002.png"
+                alt=""
+                srcset=""
+                class="char-img-2"
+              />
+              <h2>Player 2</h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="select-level">
+          <div class="input-group">
+            <select name="level" id="level" class="hidden">
+              <option value="" selected disabled>Select Level</option>
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="instruction">
+          <div class="close-instr">X</div>
+          <h2>How to play game</h2>
+          <ol>
+            <li>Input Username</li>
+            <li>Choose level, ball, and country</li>
+            <li>
+              Player 1 move the character using the following buttons “A" to
+              move left, “W” to jump, “D” to move right, “Space” to kick the
+              ball
+            </li>
+            <li>
+              Player 2 move the character using the following buttons “Left
+              arrow” to move left, “Right arrow” to move right, “Up arrow” to
+              jump,“Enter” to kick the bal
+            </li>
+            <li>
+              The score will be increased if the player can score a goal against
+              the opponent
+            </li>
+          </ol>
+        </div>
+
+        <div class="select-country">
+          <div class="input-group">
+            <img src="./Sprites/Flag/Brazil.png" alt="" />
+            <input type="radio" name="countries" value="Brazil" />
+          </div>
+          <div class="input-group">
+            <img src="./Sprites/Flag/England.png" alt="" />
+            <input type="radio" name="countries" value="England" />
+          </div>
+          <div class="input-group">
+            <img src="./Sprites/Flag/Germany.png" alt="" />
+            <input type="radio" name="countries" value="Germany" />
+          </div>
+          <div class="input-group">
+            <img src="./Sprites/Flag/Italy.png" alt="" />
+            <input type="radio" name="countries" value="Italy" />
+          </div>
+          <div class="input-group">
+            <img src="./Sprites/Flag/Japan.png" alt="" />
+            <input type="radio" name="countries" value="Japan" />
+          </div>
+          <div class="input-group">
+            <img src="./Sprites/Flag/Netherlands.png" alt="" />
+            <input type="radio" name="countries" value="Netherlands" />
+          </div>
+          <div class="input-group">
+            <img src="./Sprites/Flag/Portugal.png" alt="" />
+            <input type="radio" name="countries" value="Portugal" />
+          </div>
+          <div class="input-group">
+            <img src="./Sprites/Flag/Spain.png" alt="" />
+            <input type="radio" name="countries" value="Spain" />
+          </div>
+        </div>
+
+        <div class="select-ball">
+          <div class="input-group">
+            <img src="./Sprites/Ball 01.png" alt="" />
+            <input type="radio" name="balls" value="Ball 01" id="ball1" />
+          </div>
+
+          <div class="input-group">
+            <img src="./Sprites/Ball 02.png" alt="" />
+            <input type="radio" name="balls" value="Ball 02" id="ball2" />
+          </div>
+        </div>
+
+        <div class="buttons">
+          <button id="btn-play" class="disabled">Play Game</button>
+          <button id="btn-instruction">Instruction</button>
+        </div>
+      </div>
+
+      <div id="countdown" class="screen">
+        <h1 id="count">3</h1>
+      </div>
+
+      <div id="gameplay" class="screen active">
+        <div class="gameplay-dashboard">
+          <div class="info">
+            <button class="btn-username">Player Name</button>
+          </div>
+          <div class="info">
+            <div class="flag-1">
+              <img src="./Sprites//Flag/Brazil.png" id="flag-player-1" alt="" />
+              <h2 id="country-player-1">Brazil</h2>
+            </div>
+
+            <div class="player-score-timer">
+              <div class="score">
+                <div id="score-player-1">2</div>
+                <div id="score-player-2">0</div>
+              </div>
+
+              <div class="timer">
+                <p>Timer</p>
+                <h1>30</h1>
+              </div>
+            </div>
+
+            <div class="flag-2">
+              <img src="./Sprites/Flag/England.png" id="flag-player-2" alt="" />
+              <h2 id="country-player-1">England</h2>
+            </div>
+
+            
+          </div>
+          <div class="info">
+            <button class="btn-history">Match History</button>
+          </div>
+        </div>
+
+        <canvas id="gameplay-canvas" width="1000" height="400"></canvas>
+
+        <div class="select-country ingame">
+            <img src="./Sprites/Flag/Brazil.png" alt="" />
+         
+        </div>
+      </div>
+
+      <div id="history" class="screen"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

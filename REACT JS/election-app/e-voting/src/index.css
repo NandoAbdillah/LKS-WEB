@@ -1,0 +1,97 @@
+:root {
+  --primary-color: red !important;
+  --primary-dark : #b21111;
+}
+
+.btn-outline-primary {
+  border: 1px solid var(--primary-color);
+  background: white;
+  color: var(--primary-color);
+}
+
+.btn-primary {
+  border: none;
+  background: var(--primary-color);
+}
+
+/* .text-primary {
+  color: var(--primary-color)  !important;
+} */
+
+.btn-primary:active , .btn-primary:hover, .btn-primary.disabled,  .btn-primary:checked{
+  background: var(--primary-dark) !important;
+}
+
+
+.btn-primary.disabled {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+}
+ 
+
+.btn-outline-primary:hover {
+  background: var(--primary-color);
+  border: none;
+}
+
+.nav-link.active {
+  color: var(--primary-color) !important;
+  font-weight: 600;
+}
+
+.nav-link {
+  position: relative;
+  margin: 0 10px;
+}
+
+.nav-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 3px;
+  border-radius: 15px;
+  background: var(--primary-color);
+  animation: navAnimation 0.3s linear forwards;
+}
+
+.bg-primary {
+  background: var(--primary-color) !important;
+}
+
+.card {
+  transition: all 0.5s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-10%);
+  margin: 5px;
+}
+
+.card-candidate {
+  cursor:  pointer;
+}
+.card-candidate:hover {
+  border: 2px solid var(--primary-color);
+}
+.card-candidate:hover h1 {
+  color: var(--primary-color);
+}
+
+.bg-overlay {
+  background: rgba(0, 0, 0, 0.5) !important;
+}
+
+@keyframes navAnimation {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 80%;
+  }
+}
+
+.party-logo {
+  filter: drop-shadow(10px 0 50px rgba(255, 255, 255, 0.5)) !important;
+}

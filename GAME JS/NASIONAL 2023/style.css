@@ -1,0 +1,348 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #135ca4;
+  --primary-light: #287ed4;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  font-family: Arial, sans-serif;
+}
+
+.screen {
+  display: none;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.screen.active {
+  position: relative;
+  display: block;
+  width: 1000px;
+  height: 600px;
+  background: #fff;
+  box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.5);
+}
+
+#home {
+  background: url("./Sprites/background1.jpg");
+  background-size: 1000px 600px;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.overlay.blur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.3
+  ); /* Warna dan transparansi bisa disesuaikan */
+  backdrop-filter: blur(10px); /* Nilai blur bisa diubah sesuai keinginan */
+  z-index: 1;
+}
+
+.slide {
+  display: none;
+  position: relative;
+}
+
+.instruction {
+  display: none;
+}
+
+.instruction.active {
+  display: block;
+  position: absolute;
+  background-color: var(--primary-color);
+  z-index: 1000;
+  width: 500px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  padding: 50px;
+  color: #fff;
+}
+
+.instruction .close-instr {
+  position: absolute;
+  right: 50px;
+  top: 50px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.instruction h2 {
+  margin-bottom: 30px;
+}
+.slide {
+  display: flex;
+  margin-top: 50px;
+  text-align: center;
+  gap: 50px;
+  /* border: 1px solid black; */
+}
+.slide .input-player {
+  display: flex;
+}
+
+.slide button {
+  margin-top: 10px;
+}
+
+.slide .character {
+  position: relative;
+}
+
+.slide .form {
+  height: 200px;
+  padding: 85px 0px;
+  /* border: 1px solid black; */
+}
+
+.greetings {
+  position: absolute;
+  font-weight: 900;
+  font-size: 30px;
+  color: var(--primary-light);
+  text-align: center;
+  top: 20px;
+  left: 200px;
+}
+
+.slide h2 {
+  position: absolute;
+  bottom: 0;
+  left: 55px;
+  font-weight: 900;
+  font-size: 30px;
+  color: var(--primary-light);
+}
+
+.slide img {
+  width: 250px;
+  height: 250px;
+}
+
+.char-img-2 {
+  transform: scaleX(-1);
+}
+
+.input-group {
+  position: relative;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.input-group input,
+.input-group select {
+  width: 200px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: 3px solid var(--primary-color);
+  outline: none;
+}
+
+button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background: var(--primary-color);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.select-country {
+  display: flex;
+  position: absolute;
+  bottom: 150px;
+}
+.select-country .input-group {
+  width: 125px;
+  height: 70px;
+  transition: all 0.5s;
+}
+
+.select-country .input-group:hover,
+.select-country .input-group.active,
+.select-ball .input-group.active,
+.select-ball .input-group:hover {
+  transform: scale(1.2);
+  z-index: 100;
+  box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.5);
+  margin: 0 5px;
+}
+
+.select-country .input-group input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+.select-country img,
+.info img {
+  width: 125px;
+  height: 70px;
+}
+
+.select-ball {
+  position: absolute;
+  bottom: 30px;
+  left: 100px;
+  width: 800px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.select-ball img {
+  width: 100px;
+  height: 100px;
+  animation: spinner 2s linear infinite;
+}
+
+.select-ball .input-group input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.buttons {
+  display: block;
+  position: absolute;
+  bottom: 80px;
+  left: 350px;
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+}
+
+.select-level {
+  position: absolute;
+  top: 300px;
+  left: 400px;
+}
+
+@keyframes spinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#countdown {
+  background: var(--primary-color);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 80px;
+  font-weight: 900;
+}
+
+#gameplay {
+  background: url("./Sprites/background2.jpg");
+  background-size: 1000px 600px;
+}
+
+.gameplay-dashboard {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0px 30px;
+  margin-top: 50px;
+}
+.info {
+  display: flex;
+  align-items: flex-start;
+}
+
+.info button {
+  width: 150px;
+  height: 50px;
+  border-radius: 50px;
+}
+
+.score {
+  background: var(--primary-color);
+  display: flex;
+  border-radius: 15px;
+  margin: 0 15px;
+  color: white;
+  font-weight: 900;
+  font-size: 50px;
+  margin-top: -10px;
+}
+
+.score div {
+  padding: 10px 30px;
+}
+
+.score div:first-child {
+  border-right: 3px solid white;
+}
+
+.timer {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.timer p {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+.timer h1 {
+  color: red;
+  font-weight: 900;
+  font-size: 50px;
+}
+.info h2 {
+  text-align: center;
+}
+
+canvas {
+  position: absolute;
+  bottom: 50px;
+  z-index: 10000;
+  display: block;
+  margin: 0 auto;
+}
+
+.select-country.ingame {
+  bottom: 160px;
+}
+
+

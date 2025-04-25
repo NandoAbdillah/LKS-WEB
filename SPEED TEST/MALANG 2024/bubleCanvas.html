@@ -44,24 +44,34 @@
             let overlaps = false;
 
             for (let bubble of bubbles) {
+              // Lewati jika bubblenya adalah diri sendiri
+              if (bubble === this) continue;
+
               const distance = Math.sqrt(
                 (this.x - bubble.x) ** 2 + (this.y - bubble.y) ** 2
               );
 
               if (distance < this.radius + bubble.radius + 5) {
                 overlaps = true;
-                break;
+                break; // Keluar dari loop bubble jika ada overlap
               }
-
-              if (!overlaps) break;
-
-              this.x =
-                this.radius +
-                Math.random() * (canvas.offsetWidth - this.radius * 2);
             }
-          }
-        }
 
+            if (!overlaps) {
+              return; // Posisi sudah valid, keluar dari fungsi
+            }
+
+            // Jika overlap, coba posisi acak baru
+            this.x =
+              this.radius +
+              Math.random() * (canvas.offsetWidth - this.radius * 2);
+          }
+
+          // Jika setelah 20 percobaan masih overlap, biarkan saja
+          console.log(
+            "Tidak bisa menemukan posisi non-overlap setelah 20 percobaan"
+          );
+        }
         move() {
           this.y -= this.speed;
         }
@@ -75,8 +85,7 @@
       }
 
       function animate() {
-
-        ctx.clearRect(0,0, canvas.width, canvas.height);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         for (let i = bubbles.length - 1; i >= 0; i--) {
           if (bubbles[i].radius + bubbles[i].y < 0) {
             bubbles.splice(i, 1);

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Math Monster Mayhem</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="game-container">
+      <div id="home" class="screen active">
+        <div class="buttons">
+          <img src="./media/Asset Lainya/Play.png" alt="" id="btn-play" />
+          <img src="./media/Asset Lainya/Profile.png" alt="" id="btn-profile" />
+          <img src="./media/Asset Lainya/Quit.png" alt="" id="btn-quit" />
+        </div>
+
+        <div class="settings">
+          <img
+            src="./media/Asset Lainya/Asset Music.png"
+            alt=""
+            id="btn-music"
+          />
+        </div>
+
+        <div class="profile">
+          <div class="card title">
+            <h1>Profile</h1>
+          </div>
+
+          <div class="card body">
+            <img
+              src="./media/Asset Lainya/Asset Back.png"
+              alt=""
+              id="btn-back"
+              class="nav-btn"
+            />
+
+            <div class="avatar">
+              <img src="./media/Asset Lainya/Asset Profile.png" alt="" />
+              <input type="text" id="player-name" value=""></input>
+            </div>
+
+            <div class="profile-detail">
+              <div class="achievements">
+                <h2>achievements</h2>
+                <div class="detail">
+                  <img
+                    src="./media/Achievements/Asset 1achievements.png"
+                    alt=""
+                  />
+                  <img
+                    src="./media/Achievements/Asset 2achievements.png"
+                    alt=""
+                  />
+                  <img
+                    src="./media/Achievements/Asset 3achievements.png"
+                    alt=""
+                  />
+                </div>
+              </div>
+
+              <div class="status-level">
+                <h2>status level</h2>
+                <div class="detail">
+                  <h1>LV <span id="player-level">1</span></h1>
+                </div>
+              </div>
+
+              <div class="status-level">
+                <h2>nomor unik</h2>
+                <div class="detail">
+                  <p>0098-898-98</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="overlay"></div>
+      </div>
+
+      <div id="level" class="screen">
+        <div class="navigation">
+          <img
+            src="./media/Asset Lainya/Asset Back.png"
+            alt=""
+            id="btn-back-home"
+            class="nav-btn"
+          />
+          <img
+            src="./media/Asset Lainya/Asset Music.png"
+            alt=""
+            id="btn-music-lv"
+            class="nav-btn"
+          />
+        </div>
+
+        <div class="lv-header">
+          <h1>Map Level</h1>
+        </div>
+
+        <div class="lv-button">
+          <img src="./media/Level/Level (1).png" alt="" id="lv-1" class="lv disabled" />
+          <img
+            src="./media/Level/Level (2).png"
+            alt=""
+            id="lv-2"
+            class="lv disabled"
+          />
+          <img
+            src="./media/Level/Level (3).png"
+            alt=""
+            id="lv-3"
+            class="lv disabled"
+          />
+          <img
+            src="./media/Level/Level (4).png"
+            alt=""
+            id="lv-4"
+            class="lv disabled"
+          />
+          <img
+            src="./media/Level/Level (5).png"
+            alt=""
+            id="lv-5"
+            class="lv disabled"
+          />
+        </div>
+      </div>
+
+      <div id="gameplay" class="screen">
+        <canvas id="gameplay-canvas" width="700" height="400"></canvas>
+
+        <div class="gameplay-card">
+          <div class="card-stack">
+            <img
+              src="./media/Asset Lainya/Asset Front.png"
+              alt=""
+              id="card-1"
+            />
+            <img
+              src="./media/Asset Lainya/Asset Card Back.png"
+              alt=""
+              id="card-1"
+            />
+            <img
+              src="./media/Asset Lainya/Asset Card Back.png"
+              alt=""
+              id="card-1"
+            />
+          </div>
+          <div class="card-reveal">
+            <img
+              src="./media/Asset Lainya/Asset Card Back.png"
+              alt=""
+              id="card-1"
+            />
+            <img
+              src="./media/Asset Lainya/Asset Card Back.png"
+              alt=""
+              id="card-1"
+            />
+            <img
+              src="./media/Asset Lainya/Asset Card Back.png"
+              alt=""
+              id="card-1"
+            />
+          </div>
+          <div class="navigation">
+            <img
+              src="./media/Asset Lainya/Asset Back.png"
+              alt=""
+              id="btn-back-home"
+              class="nav-btn"
+            />
+            <img
+              src="./media/Asset Lainya/Asset Music.png"
+              alt=""
+              id="btn-music-lv"
+              class="nav-btn"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

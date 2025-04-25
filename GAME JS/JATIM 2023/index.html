@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LKS PVZ</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    
+    <div class="game-container">
+      <div id="home" class="screen active">
+        <div class="main">
+          <img
+            src="./media/Sprites/General/logo.png"
+            alt="logo"
+            class="game-logo"
+          />
+
+          <div class="form">
+            <div class="input-group">
+              <input
+                type="text"
+                name="username"
+                placeholder="Input Username"
+                id="input-username"
+              />
+            </div>
+
+            <div class="input-group">
+              <select name="level" id="level">
+                <option value="" selected disabled>Select Level</option>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+              </select>
+            </div>
+
+            <div class="buttons">
+              <button class="disable" id="btn-play">
+                <img src="./media/Sprites/General/Shovel.png" alt="" />Play Game
+              </button>
+              <button id="btn-instruction">Instruction</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="instruction">
+          <div class="close-instr">X</div>
+          <h2>How to play game</h2>
+          <ol>
+            <li>Input Username</li>
+            <li>Take the sun to choose the plant card</li>
+            <li>Put a plant cards into the fields to fight zombies</li>
+            <li>Don't let zombies pas trough the yard</li>
+            <li>Enjoy !</li>
+          </ol>
+        </div>
+      </div>
+
+      <div id="countdown" class="screen">
+        <h1 id="count">3</h1>
+      </div>
+
+      <div id="gameplay" class="screen">
+        <div class="gameplay-container">
+          <div class="gameplay-dashboard">
+            <div class="sun-amount">50</div>
+            <div class="plant-seeds">
+              <img
+                src="./media/Sprites/Seeds/SunFlowerSeed.png"
+                alt=""
+                class="seeds"
+              /><img
+                src="./media/Sprites/Seeds/WallNutSeed.png"
+                alt=""
+                class="seeds"
+              /><img
+                src="./media/Sprites/Seeds/PeaShooterSeed.png"
+                alt=""
+                class="seeds"
+              /><img
+                src="./media/Sprites/Seeds/IcePeaSeed.png"
+                alt=""
+                class="seeds"
+              />
+            </div>
+
+            <div class="player-details">
+              <p>Player Name : <span id="player-name">Nando</span></p>
+              <p>Score : <span id="player-score">30</span></p>
+              <p>Time : <span id="player-time">00:00</span></p>
+            </div>
+
+            <div class="shovel-container">
+              <img
+                id="shovel"
+                src="./media/Sprites/General/Shovel.png"
+                alt=""
+              />
+            </div>
+          </div>
+
+          <canvas id="gameplay-canvas" width="795" height="450"></canvas>
+        </div>
+
+        <div class="gameplay-leaderboard">
+          <h3>LEADERBOARD</h3>
+          <select name="sort" id="sort-leaderboard">
+            <option value="score">Sort By Score</option>
+            <option value="name">Sort By Name</option>
+          </select>
+
+          <div class="leaders">
+            <div class="detail">
+              <p>1</p>
+              <div class="info">
+                <h5>Nando Abdillah</h5>
+                <p>Score : 55</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="popover" id="pause">
+          <div class="dialog">
+            <h2>Game Paused</h2>
+            <p class="paused-player">Player Name : Your Name</p>
+
+            <div class="buttons">
+              <button id="continue">Continue</button>
+              <button class="restart">Restart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="popover" id="gameover">
+          <div class="dialog">
+            <h2>Game Over</h2>
+            <p class="gameover-player">Player Name : Your Name</p>
+            <p class="gameover-score">Score : 80</p>
+
+            <div class="buttons">
+              <button class="restart">Restart</button>
+              <button id="exit">Exit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

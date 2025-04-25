@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shooters</title>
+    <link rel="shortcut icon" href="./Sprites/gun1.png" type="image/x-icon">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="gameContainer">
+        <div id="home" class="screen  active ">
+            <div class="main">
+                <img src="./Sprites/shooter.png" alt="" class="game-logo">
+
+                <div class="form">
+                    <div class="input-group">
+                        <input type="text" name="username" placeholder="Input username" id="username">
+                    </div>
+                    <div class="input-group">
+                        <select name="level" id="level">
+                            <option value="" selected disabled>Select level</option>
+                            <option value="easy">Easy</option>
+                            <option value="medium">Medium</option>
+                            <option value="hard">Hard</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <div class="input-radio">
+                            <img src="./Sprites/gun1.png" alt="" class="guns"> <br>
+                            <input type="radio" name="guns" value="gun1" id="guns1">
+                        </div>
+                        <div class="input-radio">
+                            <img src="./Sprites/gun2.png" alt="" class="guns"> <br>
+                            <input type="radio" name="guns" value="gun2" id="guns1">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <div class="input-radio">
+                            <img src="./Sprites/target1.png" alt="" class="targets"> <br>
+                            <input type="radio" name="targets" value="target1">
+                        </div>
+                        <div class="input-radio">
+                            <img src="./Sprites/target2.png" alt="" class="targets"> <br>
+                            <input type="radio" name="targets" value="target2">
+                        </div>
+                        <div class="input-radio">
+                            <img src="./Sprites/target3.png" alt="" class="targets"> <br>
+                            <input type="radio" name="targets" value="target3">
+                        </div>
+                    </div>
+
+                    <div class="buttons">
+                        <button id="btn-play" class="disabled">Play Game</button>
+                        <button id="btn-instruction">Instruction</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="instruction" class="">
+                <div id="close-instr">X</div>
+
+                <div class="content">
+                    <h2>How to play game</h2>
+                    <ol>
+                        <li>Input username</li>
+                        <li>Point the pointer at the target</li>
+                        <li>Click to shooter</li>
+                        <li>Get as many points as possible</li>
+                        <li>Enjoy !</li>
+                    </ol>
+                </div>
+            </div>
+
+        </div>
+        <div id="countdown" class="screen  ">
+            <div id="count">3</div>
+        </div>
+        <div id="gameplay" class="screen  ">
+            <div class="gameplay-container">
+                <div class="gameplay-dashboard">
+                    <p>Player Name : <span class="player-name">Nando</span></p>
+                    <p>Score : <span class="player-score">30</span></p>
+                    <p>Time : <span class="player-time">00:22</span></p>
+                </div>
+
+                <canvas id="gameCanvas" width="750" height="500"></canvas>
+            </div>
+
+            <div class="leaderboards">
+                <h3>LEADERBOARDS</h3>
+                <select name="sortBy" id="sortBy">
+                    <option value="score">Select by score</option>
+                    <option value="time">Select by time</option>
+                </select>
+
+
+                <div id="leaders">
+
+                </div>
+
+            </div>
+
+            <div class="popover  " id="pause">
+                <div class="dialog">
+                    <h1>Game Paused</h1>
+                    <p>Player Name : <span class="player-name">Nando</span></p>
+                    <p>Score : <span class="player-score"></span></p>
+
+                    <div class="buttons">
+                        <button id="btn-continue">Continue</button>
+                        <button class="btn-restart">Restart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="popover " id="gameover">
+                <div class="dialog">
+                    <h1>Game Over</h1>
+                    <p>Player Name : <span class="player-name">Nando</span></p>
+                    <p>Score : <span class="player-score">30</span></p>
+                    <p>Time : <span class="player-time">00:00</span></p>
+
+                    <div class="buttons">
+                        <button class="btn-restart">Restart</button>
+                        <button id="btn-home">Home</button>
+                        <button id="btn-history">History</button>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>

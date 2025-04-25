@@ -1,0 +1,278 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #471414;
+  --primary-dark: #2b1010;
+  --primary-light: #824a4a;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-family: Arial, sans-serif;
+}
+.screen {
+  position: relative;
+  width: 0;
+  height: 0;
+  display: none;
+  overflow: hidden;
+}
+
+.screen.active {
+  display: block;
+  width: 1000px;
+  height: 600px;
+  background-color: #fff;
+  box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.5);
+}
+
+#home {
+  display: flex;
+  background: var(--primary-color);
+}
+
+.main {
+  flex: 1;
+  margin: auto 20px;
+}
+
+#instruction {
+  display: none;
+}
+
+.game-logo {
+  display: block;
+  margin: 15px auto;
+  max-width: 350px;
+  text-align: center;
+}
+
+.form {
+  display: block;
+  margin: 25px auto;
+  max-width: 800px;
+  text-align: center;
+}
+
+.input-group {
+  display: block;
+  margin: 10px auto;
+}
+
+.input-group input,
+.input-group select {
+  padding: 8px 16px;
+  min-width: 300px;
+  border-radius: 5px;
+  background-color: var(--primary-dark);
+  border: 3px solid var(--primary-light);
+  color: white;
+}
+
+button {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.disable {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#btn-play {
+  background: green;
+  color: white;
+}
+
+#btn-play img {
+  width: 25px;
+  height: 15px;
+  margin: auto 5px;
+}
+
+#btn-instruction {
+  background: yellow;
+  color: var(--primary-dark);
+}
+
+#instruction.active {
+  display: block;
+  flex: 1;
+  position: relative;
+  padding: 50px;
+  border-radius: 15px;
+  background: var(--primary-dark);
+  width: 500px;
+  margin: 25px 25px 25px 0;
+  color: white;
+}
+
+#instruction h2 {
+  font-weight: 900;
+}
+
+#instruction ol {
+  margin: 15px 0 0 30px;
+}
+
+#instruction li {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.close-instr {
+  position: absolute;
+  top: 50px;
+  right: 55px;
+  border-radius: 8px;
+  background: red;
+  font-weight: 900;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+#countdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 200px;
+  background: var(--primary-light);
+  color: white;
+}
+
+#gameplay {
+    display: flex;
+}
+
+canvas {
+  position:absolute;
+  top: 20%;
+}
+
+.gameplay-container {
+    width: 800px;
+    background: url('./media//Sprites/General/Background.jpg');
+    background-size: 800px 600px;
+}
+
+.game-dashboard {
+    position: absolute;
+    top: 15px;
+    left: 110px;
+    display: flex;
+}
+
+.sun-amount {
+    width: 75px;
+    height: 75px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    font-weight: 900;
+    
+}
+
+.plant-seeds {
+    width: 250px;
+    margin-left: 10px;
+}
+
+.player-details {
+    width: 190px;
+    padding-top: 10px;
+    color: white;
+    font-weight: 700;
+}
+
+
+
+.shovel-container img {
+    margin-left: 10px;
+    width: 50px;
+    height: 50px ;
+}
+
+.leaderboard {
+    width: 200px;
+    padding: 5px;
+    text-align: center;
+    background: var(--primary-color);
+    color: white;
+    padding: 1px;
+}
+
+.leaderboard h3 {
+    font-weight: 900;
+    margin-top: 20px;
+}
+
+.leaderboard select {
+    color: black;
+    width: 150px;
+    padding: 5px;
+    margin: 10px 0;
+}
+
+.player-detail {
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+
+.popover {
+    display: none;
+
+}
+
+.popover.active {
+    display: block;
+    position: absolute;
+    top: 0;
+    left:  0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dialog {
+    background: black;
+    border: 1px solid #fff;
+    color:  white;
+    padding:  50px 100px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.dialog h2 {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.dialog p {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.dialog button {
+    color: var(--primary-color);
+    margin-bottom: 10px 15px;
+}
+
+

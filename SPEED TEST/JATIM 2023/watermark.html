@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Watermark Gambar</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+    }
+    .input-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input[type="file"] {
+      width: 100%;
+    }
+    button {
+      display: block;
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 10px auto;
+      cursor: pointer;
+    }
+    canvas {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 20px auto;
+      border: 1px solid #ddd;
+    }
+    .download-link {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 4px;
+      margin: 10px auto;
+      width: max-content;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Watermark Gambar</h2>
+    <div class="input-group">
+      <label for="main">Gambar Utama (PNG):</label>
+      <input type="file" id="main" accept="image/png">
+    </div>
+    <div class="input-group">
+      <label for="logo">Logo (PNG):</label>
+      <input type="file" id="logo" accept="image/png">
+    </div>
+    <button id="process">Tambahkan Watermark</button>
+    <canvas id="canvas"></canvas>
+    <a id="download" class="download-link" download="hasil.png" style="display: none;">Unduh Gambar</a>
+  </div>
+  <script>
+    document.getElementById('process').onclick = function() {
+      const mainFile = document.getElementById('main').files[0],
+            logoFile = document.getElementById('logo').files[0];
+      
+      if (!mainFile || !logoFile) {
+        alert('Silakan pilih gambar utama dan logo!');
+        return;
+      }
+      
+      const mainReader = new FileReader(),
+            logoReader = new FileReader();
+      
+      mainReader.onload = function(e) {
+        const mainImg = new Image();
+        mainImg.onload = function() {
+          logoReader.onload = function(e2) {
+            const logoImg = new Image();
+            logoImg.onload = function() {
+              const canvas = document.getElementById('canvas');
+              canvas.width = mainImg.width;
+              canvas.height = mainImg.height;
+              const ctx = canvas.getContext('2d');
+              ctx.drawImage(mainImg, 0, 0);
+              // Tempelkan logo di pojok kanan atas
+              ctx.drawImage(logoImg, mainImg.width - logoImg.width, 0);
+              // Buat link download
+              const dataURL = canvas.toDataURL('image/png');
+              const dlLink = document.getElementById('download');
+              dlLink.href = dataURL;
+              dlLink.style.display = 'block';
+            }
+            logoImg.src = e2.target.result;
+          }
+          logoReader.readAsDataURL(logoFile);
+        }
+        mainImg.src = e.target.result;
+      }
+      mainReader.readAsDataURL(mainFile);
+    }
+  </script>
+</body>
+</html>

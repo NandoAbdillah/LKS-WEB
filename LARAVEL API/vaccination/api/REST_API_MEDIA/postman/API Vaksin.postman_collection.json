@@ -1,0 +1,229 @@
+{
+	"info": {
+		"_postman_id": "c3ca2e43-5d3f-446a-8891-04d6224d1c96",
+		"name": "API Vaksin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17022482"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id_card_number",
+							"value": "ID655363",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/logout?token=f18eb9f6b30dcec4f65ec650e2a1cf39",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"logout"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "f18eb9f6b30dcec4f65ec650e2a1cf39"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consultation",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/consultations?token=f18eb9f6b30dcec4f65ec650e2a1cf39",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"consultations"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "f18eb9f6b30dcec4f65ec650e2a1cf39"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request Consultation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "disease_history",
+							"value": "uji",
+							"type": "text"
+						},
+						{
+							"key": "current_symptoms",
+							"value": "-",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/consultations?token=67fa2be1545f8de7be6ef376f9de4744",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"consultations"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "67fa2be1545f8de7be6ef376f9de4744"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Spots",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/spots?token=f18eb9f6b30dcec4f65ec650e2a1cf39",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"spots"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "f18eb9f6b30dcec4f65ec650e2a1cf39"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Detail Spot",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/spots/12?token=67fa2be1545f8de7be6ef376f9de4744&date=2023-11-14",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"spots",
+						"12"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "67fa2be1545f8de7be6ef376f9de4744"
+						},
+						{
+							"key": "date",
+							"value": "2023-11-14"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "My Vaccination",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/vaccinations?token=67fa2be1545f8de7be6ef376f9de4744",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"vaccinations"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "67fa2be1545f8de7be6ef376f9de4744"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request Vaccination",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/vaccinations?token=67fa2be1545f8de7be6ef376f9de4744",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"vaccinations"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "67fa2be1545f8de7be6ef376f9de4744"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://127.0.0.1:8000/api"
+		}
+	]
+}
